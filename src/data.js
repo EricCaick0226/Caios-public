@@ -128,3 +128,66 @@ export const modeQuestions = [
     ],
   },
 ]
+
+export const quizQuestions = [
+  {
+    id: 'favorite-club',
+    question: 'What is Chengkai’s favorite football club?',
+    options: ['FC Barcelona', 'Real Madrid', 'Atlético Madrid', 'Valencia CF'],
+    correctAnswer: 'FC Barcelona',
+  },
+  {
+    id: 'favorite-player',
+    question: 'Who is Chengkai’s favorite football player?',
+    options: ['Andrés Iniesta', 'Xavi', 'Ivan Rakitic', 'Sergio Busquets'],
+    correctAnswer: 'Ivan Rakitic',
+  },
+  {
+    id: 'favorite-food',
+    question: 'What kind of food does Chengkai like the most?',
+    options: ['Japanese food', 'Korean food', 'Chinese food', 'Thai food'],
+    correctAnswer: 'Japanese food',
+  },
+  {
+    id: 'rest-in-new-york',
+    question: 'What does Chengkai like to do to rest in New York?',
+    options: ['Sit in a coffee shop', 'Walk around', 'Browse bookstores', 'Go shopping'],
+    correctAnswer: 'Walk around',
+  },
+  {
+    id: 'usual-drink',
+    question: 'What drink does Chengkai often choose?',
+    options: ['Iced Americano', 'Diet Coke', 'Coke Zero', 'Sparkling water'],
+    correctAnswer: 'Diet Coke',
+  },
+  {
+    id: 'schedule-style',
+    question: 'What kind of schedule fits Chengkai better?',
+    options: ['Morning person', 'Night owl', 'Late-morning person', 'Deadline-driven schedule'],
+    correctAnswer: 'Morning person',
+  },
+  {
+    id: 'city-vibe',
+    question: 'What city vibe does Chengkai like the most?',
+    options: ['Tokyo', 'Kyoto', 'Osaka', 'Nara'],
+    correctAnswer: 'Kyoto',
+  },
+  {
+    id: 'eating-style',
+    question: 'How does Chengkai usually prefer to eat?',
+    options: ['Alone', 'With one close friend', 'With a small group', 'With a big group'],
+    correctAnswer: 'Alone',
+  },
+  {
+    id: 'stress-relief',
+    question: 'What does Chengkai often do to relieve stress?',
+    options: ['Watch shows', 'Take a nap', 'Eat something good', 'Walk outside'],
+    correctAnswer: 'Watch shows',
+  },
+  {
+    id: 'remembered-for',
+    question: 'What does Chengkai hope people remember about him?',
+    options: ['Thoughtful', 'Sincere', 'Humorous', 'Hardworking'],
+    correctAnswer: 'Humorous',
+  },
+]
