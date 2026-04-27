@@ -11,7 +11,7 @@ export const exploreCards = [
     title: 'Background App',
     subtitle: 'Anxiety is open, but the system still runs.',
     description:
-      'Status: running. Background anxiety checks school, plans, messages, deadlines, and whether everyone else secretly has a better manual. CaiOS still works. Battery drains faster.',
+      'Status: running. Background anxiety checks school, plans, messages, deadlines, and whether everyone else secretly has a better manual. caIos still works. Battery drains faster.',
   },
   {
     id: 'rest-mode',
@@ -67,7 +67,7 @@ export const modeQuestions = [
       },
       {
         id: 'anxiety-feeling',
-        question: 'Does CaiOS still function with that tab open?',
+        question: 'Does caIos still function with that tab open?',
         answer:
           'Yes. I go to class, reply to messages, make plans, drink Diet Coke, and look normal enough. Close friends get the unlocked version: jokes, overthinking, and a lot of “wait, but what if...”',
       },
@@ -79,7 +79,7 @@ export const modeQuestions = [
     questions: [
       {
         id: 'rest-look',
-        question: 'What counts as rest in CaiOS?',
+        question: 'What counts as rest in caIos?',
         answer:
           'Walking around NYC counts. Eating Japanese food counts. Shopping counts if I do not look too closely at the receipt. Watching shows counts. Studying more does not count, even if my brain tries to sneak it in.',
       },
@@ -189,5 +189,65 @@ export const quizQuestions = [
     question: 'Which trait would Chengkai be happiest to be remembered for?',
     options: ['Thoughtful', 'Sincere', 'Humorous', 'Hardworking'],
     correctAnswer: 'Humorous',
+  },
+]
+
+export const achievements = [
+  {
+    id: 'small-drawer-opened',
+    title: 'Small Drawer Opened',
+    icon: '🗂️',
+    descriptionEn:
+      'You opened enough drawers to realize caIos is mostly food, anxiety, and side quests.',
+    descriptionZh: '你打开了足够多的小抽屉，发现 caIos 主要由食物、焦虑和支线任务组成。',
+    lockedHint: 'Open more small drawers.',
+  },
+  {
+    id: 'food-battery-restored',
+    title: 'Food Battery Restored',
+    icon: '🍣',
+    descriptionEn: 'Carbs, salmon, and Diet Coke detected. System recovery in progress.',
+    descriptionZh: '检测到碳水、三文鱼和 Diet Coke。系统正在回血。',
+    lockedHint: 'Check the food system.',
+  },
+  {
+    id: 'old-save-file-found',
+    title: 'Old Save File Found',
+    icon: '✏️',
+    descriptionEn: 'Yellow pencil equipped. Excavator dream archived but not deleted.',
+    descriptionZh: '黄铅笔已装备。挖掘机梦想已归档，但没有删除。',
+    lockedHint: 'Look for an old save file.',
+  },
+  {
+    id: 'background-app-located',
+    title: 'Background App Located',
+    icon: '🧠',
+    descriptionEn: 'Background anxiety is running. Somehow, Chengkai is still responding.',
+    descriptionZh: '后台焦虑正在运行。Chengkai 居然还在响应。',
+    lockedHint: 'Find the background app.',
+  },
+  {
+    id: 'friend-check-cleared',
+    title: 'Friend Check Cleared',
+    icon: '✅',
+    descriptionEn: 'You finished the friend check. caIos is mildly impressed.',
+    descriptionZh: '你完成了朋友熟悉度检查。caIos 表示有点认可。',
+    lockedHint: 'Finish the friend check.',
+  },
+  {
+    id: 'core-access-granted',
+    title: 'Core Access Granted',
+    icon: '🗝️',
+    descriptionEn: 'You know too much. Please do not leak the yellow pencil lore.',
+    descriptionZh: '你知道得太多了。请不要泄露黄铅笔传说。',
+    lockedHint: 'Reach the deepest friend-check level.',
+  },
+  {
+    id: 'left-a-trace',
+    title: 'Left a Trace',
+    icon: '💌',
+    descriptionEn: 'A note has entered the public save file. No bureaucracy required.',
+    descriptionZh: '一张小纸条进入了 public save file。不需要走复杂流程。',
+    lockedHint: 'Leave a small trace.',
   },
 ]

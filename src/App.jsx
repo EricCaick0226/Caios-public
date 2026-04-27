@@ -1,6 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import heroImage from './assets/hero.png'
-import { exploreCards, modeQuestions, quizQuestions } from './data'
+import { achievements, exploreCards, modeQuestions, quizQuestions } from './data'
+
+function BrandName({ className = '' }) {
+  return (
+    <span className={className}>
+      ca
+      <span className="brand-i">I</span>
+      os
+    </span>
+  )
+}
 
 function App() {
   const [selectedCard, setSelectedCard] = useState(exploreCards[0])
@@ -12,26 +22,91 @@ function App() {
   const [selectedAnswer, setSelectedAnswer] = useState('')
   const [score, setScore] = useState(0)
   const [showResult, setShowResult] = useState(false)
+  const [unlockedAchievementIds, setUnlockedAchievementIds] = useState([])
+  const [achievementToast, setAchievementToast] = useState(null)
+  const [, setSelectedAskQuestionIds] = useState([])
 
   const currentQuestion = quizQuestions[currentQuestionIndex]
+
+  useEffect(() => {
+    if (!achievementToast) {
+      return
+    }
+
+    const timer = window.setTimeout(() => {
+      setAchievementToast(null)
+    }, 4200)
+
+    return () => window.clearTimeout(timer)
+  }, [achievementToast])
+
+  function unlockAchievement(id) {
+    const achievement = achievements.find((item) => item.id === id)
+
+    if (!achievement) {
+      return
+    }
+
+    setUnlockedAchievementIds((currentIds) => {
+      if (currentIds.includes(id)) {
+        return currentIds
+      }
+
+      setAchievementToast(achievement)
+
+      return [...currentIds, id]
+    })
+  }
 
   function chooseMode(mode) {
     setSelectedMode(mode)
     setSelectedQuestion(mode.questions[0])
   }
 
+  function chooseQuestion(item) {
+    setSelectedQuestion(item)
+
+    const questionKey = `${selectedMode.modeId}-${item.id}`
+
+    setSelectedAskQuestionIds((currentIds) => {
+      if (currentIds.includes(questionKey)) {
+        return currentIds
+      }
+
+      const nextIds = [...currentIds, questionKey]
+
+      if (nextIds.length >= 3) {
+        unlockAchievement('small-drawer-opened')
+      }
+
+      return nextIds
+    })
+
+    if (selectedMode.modeId === 'food') {
+      unlockAchievement('food-battery-restored')
+    }
+
+    if (selectedMode.modeId === 'memory') {
+      unlockAchievement('old-save-file-found')
+    }
+
+    if (selectedMode.modeId === 'anxiety') {
+      unlockAchievement('background-app-located')
+    }
+  }
+
   function getQuizResult(finalScore) {
     if (finalScore <= 3) {
       return {
-        title: 'CaiOS Visitor',
+        title: 'caIos Visitor',
         description:
-          'You made it through the front door. CaiOS is still checking your visitor badge, and the Diet Coke file remains mostly locked.',
+          'You made it through the front door. caIos is still checking your visitor badge, and the Diet Coke file remains mostly locked.',
       }
     }
 
     if (finalScore <= 6) {
       return {
-        title: 'CaiOS Observer',
+        title: 'caIos Observer',
         description:
           'You noticed some surface lore: food matters, Barcelona matters, and the anxiety tab is probably open. Respectable progress.',
       }
@@ -39,14 +114,14 @@ function App() {
 
     if (finalScore <= 8) {
       return {
-        title: 'CaiOS Friend',
+        title: 'caIos Friend',
         description:
           'You know enough to be mildly dangerous. You understand walking around NYC, Japanese food, background anxiety, and the fact that rest may still involve planning.',
       }
     }
 
     return {
-      title: 'CaiOS Core Member',
+      title: 'caIos Core Member',
       description:
         'You know too much. Please do not leak the yellow pencil lore, the Barcelona settings, or the exact emotional importance of salmon nigiri.',
     }
@@ -73,6 +148,12 @@ function App() {
 
     if (isLastQuestion) {
       setShowResult(true)
+      unlockAchievement('friend-check-cleared')
+
+      if (getQuizResult(newScore).title === 'caIos Core Member') {
+        unlockAchievement('core-access-granted')
+      }
+
       return
     }
 
@@ -88,9 +169,19 @@ function App() {
     setShowResult(false)
   }
 
+  function resetUnlocks() {
+    setUnlockedAchievementIds([])
+    setSelectedAskQuestionIds([])
+    setAchievementToast(null)
+  }
+
   const quizResult = getQuizResult(score)
 
   const quizProgress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100
+
+  const unlockedCount = achievements.filter((achievement) =>
+    unlockedAchievementIds.includes(achievement.id),
+  ).length
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#fbfaf7] text-slate-900">
@@ -98,19 +189,43 @@ function App() {
       <div className="pointer-events-none absolute right-[-8rem] top-[28rem] h-96 w-96 rounded-full bg-sky-200/35 blur-3xl" />
       <div className="pointer-events-none absolute bottom-40 left-1/4 h-80 w-80 rounded-full bg-emerald-200/30 blur-3xl" />
 
+      {achievementToast && (
+        <aside className="achievement-toast fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-sm rounded-3xl border border-amber-200 bg-[#fffaf0] p-4 shadow-2xl sm:left-auto sm:right-6 sm:top-6 sm:bottom-auto sm:mx-0">
+          <p className="text-xs font-bold uppercase tracking-wider text-amber-700">
+            Achievement Unlocked
+          </p>
+          <div className="mt-2 flex gap-3">
+            <span className="text-3xl" aria-hidden="true">
+              {achievementToast.icon}
+            </span>
+            <div>
+              <h3 className="font-bold text-slate-950">{achievementToast.title}</h3>
+              <p className="mt-1 text-sm leading-6 text-slate-700">
+                {achievementToast.descriptionEn}
+              </p>
+              <p className="mt-1 text-xs leading-5 text-slate-500">
+                {achievementToast.descriptionZh}
+              </p>
+            </div>
+          </div>
+        </aside>
+      )}
+
       <section className="section-rise relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 py-6 sm:px-8 sm:py-8 lg:px-10">
         <nav className="flex flex-col gap-2 border-b border-slate-200/80 pb-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-lg font-semibold tracking-tight">CaiOS Public</p>
+          <p className="text-lg font-semibold tracking-tight">
+            <BrandName /> Public
+          </p>
           <p className="text-sm text-slate-500">soft save file · public version</p>
         </nav>
 
         <div className="grid flex-1 items-center gap-10 py-12 sm:py-14 lg:grid-cols-[1.08fr_0.92fr]">
           <div>
             <p className="mb-5 inline-flex rounded-full border border-amber-200 bg-white/75 px-4 py-2 text-sm font-semibold text-amber-800 shadow-sm backdrop-blur">
-              Welcome to CaiOS · public save file
+              Welcome to <BrandName /> · public save file
             </p>
             <h1 className="text-5xl font-bold leading-tight tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
-              CaiOS Public
+              <BrandName /> Public
             </h1>
             <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-700">
               Not really a portfolio. More like a tiny public save file for Chengkai: NYU life,
@@ -144,7 +259,7 @@ function App() {
               </span>
               <img
                 src={heroImage}
-                alt="Layered CaiOS symbol"
+                alt="Layered caIos symbol"
                 className="w-56 max-w-full drop-shadow-sm sm:w-64"
               />
             </div>
@@ -219,7 +334,7 @@ function App() {
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-slate-500">
-              Pick a tab. CaiOS opens a small drawer. Some drawers contain food. Some contain
+              Pick a tab. caIos opens a small drawer. Some drawers contain food. Some contain
               background anxiety.
             </p>
           </div>
@@ -254,7 +369,7 @@ function App() {
                   <button
                     key={item.id}
                     type="button"
-                    onClick={() => setSelectedQuestion(item)}
+                    onClick={() => chooseQuestion(item)}
                     className={`lift-card rounded-3xl border p-5 text-left transition duration-300 ${
                       isSelected
                         ? 'border-sky-300 bg-sky-50 shadow-md ring-2 ring-sky-100'
@@ -271,7 +386,7 @@ function App() {
 
             <article key={selectedQuestion.id} className="answer-fade soft-card bg-white p-6 sm:p-7">
               <p className="text-sm font-semibold uppercase tracking-wider text-sky-700">
-                CaiOS note · {selectedMode.modeTitle}
+                caIos note · {selectedMode.modeTitle}
               </p>
               <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-950">
                 {selectedQuestion.question}
@@ -315,7 +430,7 @@ function App() {
                 className="mt-3 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition duration-300 placeholder:text-slate-400 focus:border-rose-300 focus:shadow-sm"
               />
               <p className="mt-3 text-sm leading-6 text-slate-500">
-                CaiOS only remembers this during the current browser session. No database, no
+                caIos only remembers this during the current browser session. No database, no
                 dramatic surveillance arc.
               </p>
               <button
@@ -350,7 +465,7 @@ function App() {
 
               <article key={currentQuestion.id} className="answer-fade soft-card bg-white p-5 sm:p-6">
                 <p className="text-sm font-semibold uppercase tracking-wider text-rose-700">
-                  CaiOS prompt {currentQuestionIndex + 1} / {quizQuestions.length}
+                  caIos prompt {currentQuestionIndex + 1} / {quizQuestions.length}
                 </p>
                 <h3 className="mt-3 text-2xl font-bold tracking-tight">
                   {currentQuestion.question}
@@ -418,6 +533,83 @@ function App() {
         </div>
       </section>
 
+      <section className="section-rise relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
+        <div className="soft-card mx-auto max-w-6xl bg-white/85 p-5 backdrop-blur sm:p-8">
+          <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-amber-700">
+                <BrandName /> Unlocks
+              </p>
+              <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
+                Tiny achievements for this visit
+              </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-500">
+                Unlocks only live in this visit. No account, no database, no dramatic surveillance
+                arc.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:items-end">
+              <p className="rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-sm font-bold text-amber-800">
+                {unlockedCount} / {achievements.length} unlocked
+              </p>
+              <button
+                type="button"
+                onClick={resetUnlocks}
+                className="text-sm font-semibold text-slate-500 transition hover:text-slate-900"
+              >
+                Reset this visit&apos;s unlocks
+              </button>
+            </div>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {achievements.map((achievement) => {
+              const isUnlocked = unlockedAchievementIds.includes(achievement.id)
+
+              return (
+                <article
+                  key={achievement.id}
+                  className={`rounded-3xl border p-5 transition duration-300 ${
+                    isUnlocked
+                      ? 'border-amber-200 bg-amber-50/80 shadow-sm'
+                      : 'border-slate-200 bg-white/70 text-slate-500'
+                  }`}
+                >
+                  <div className="flex items-start gap-3">
+                    <span className="text-3xl" aria-hidden="true">
+                      {isUnlocked ? achievement.icon : '🔒'}
+                    </span>
+                    <div>
+                      <h3 className="font-bold text-slate-950">
+                        {isUnlocked ? achievement.title : 'Locked'}
+                      </h3>
+                      {isUnlocked ? (
+                        <>
+                          <p className="mt-2 text-sm leading-6 text-slate-700">
+                            {achievement.descriptionEn}
+                          </p>
+                          <p className="mt-2 text-xs leading-5 text-slate-500">
+                            {achievement.descriptionZh}
+                          </p>
+                        </>
+                      ) : (
+                        <p className="mt-2 text-sm leading-6 text-slate-500">
+                          {achievement.lockedHint}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              )
+            })}
+          </div>
+
+          <p className="mt-5 text-xs leading-5 text-slate-500">
+            Unlocks only live in this visit. No account, no database.
+          </p>
+        </div>
+      </section>
+
       <section className="section-rise relative z-10 px-5 py-8 pb-16 sm:px-8 sm:py-10 lg:px-10">
         <div className="soft-card mx-auto max-w-6xl bg-emerald-50/70 p-5 sm:p-8">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
@@ -428,12 +620,13 @@ function App() {
           </h2>
           <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">
             Random thoughts are welcome. Food recommendations are very welcome. Questions, small
-            notes, show recommendations, or “I found a bug in CaiOS” comments are also accepted.
+            notes, show recommendations, or “I found a bug in caIos” comments are also accepted.
           </p>
           <a
             href="https://tally.so/r/ODjV6k"
             target="_blank"
             rel="noreferrer"
+            onClick={() => unlockAchievement('left-a-trace')}
             className="mt-6 inline-flex rounded-full border border-emerald-300 bg-white px-5 py-3 text-sm font-semibold text-emerald-800 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-emerald-100 hover:shadow-md"
           >
             Send to Chengkai
