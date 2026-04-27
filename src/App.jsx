@@ -1,6 +1,45 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import heroImage from './assets/hero.png'
 import { achievements, exploreCards, modeQuestions, quizQuestions } from './data'
+
+function RevealSection({ children, className = '' }) {
+  const sectionRef = useRef(null)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useEffect(() => {
+    const section = sectionRef.current
+
+    if (!section) {
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true)
+          observer.unobserve(entry.target)
+        }
+      },
+      {
+        rootMargin: '0px 0px -12% 0px',
+        threshold: 0.12,
+      },
+    )
+
+    observer.observe(section)
+
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <section
+      ref={sectionRef}
+      className={`reveal-section ${isVisible ? 'is-visible' : ''} ${className}`}
+    >
+      {children}
+    </section>
+  )
+}
 
 function BrandName({ className = '' }) {
   return (
@@ -211,7 +250,7 @@ function App() {
         </aside>
       )}
 
-      <section className="section-rise relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 py-6 sm:px-8 sm:py-8 lg:px-10">
+      <RevealSection className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 py-6 sm:px-8 sm:py-8 lg:px-10">
         <nav className="flex flex-col gap-2 border-b border-slate-200/80 pb-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-lg font-semibold tracking-tight">
             <BrandName /> Public
@@ -265,9 +304,9 @@ function App() {
             </div>
           </div>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section-rise relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
+      <RevealSection className="relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
         <div className="soft-card mx-auto max-w-6xl bg-white/85 p-5 backdrop-blur sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -284,7 +323,7 @@ function App() {
           </div>
 
           <div className="grid gap-5 lg:grid-cols-[1fr_1fr]">
-            <div className="grid gap-3 sm:grid-cols-2">
+            <div className="stagger-list grid gap-3 sm:grid-cols-2">
               {exploreCards.map((card) => {
                 const isSelected = selectedCard.id === card.id
 
@@ -293,7 +332,7 @@ function App() {
                     key={card.id}
                     type="button"
                     onClick={() => setSelectedCard(card)}
-                    className={`lift-card min-h-36 rounded-3xl border p-5 text-left transition duration-300 ${
+                    className={`stagger-child lift-card min-h-36 rounded-3xl border p-5 text-left transition duration-300 ${
                       isSelected
                         ? 'border-amber-300 bg-amber-50 shadow-md ring-2 ring-amber-100'
                         : 'border-slate-200 bg-white hover:border-amber-200 hover:bg-amber-50/40'
@@ -320,9 +359,9 @@ function App() {
             </article>
           </div>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section-rise relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
+      <RevealSection className="relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
         <div className="soft-card mx-auto max-w-6xl bg-white/85 p-5 backdrop-blur sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -361,7 +400,7 @@ function App() {
           </div>
 
           <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="grid gap-3">
+            <div className="stagger-list grid gap-3">
               {selectedMode.questions.map((item) => {
                 const isSelected = selectedQuestion.id === item.id
 
@@ -370,7 +409,7 @@ function App() {
                     key={item.id}
                     type="button"
                     onClick={() => chooseQuestion(item)}
-                    className={`lift-card rounded-3xl border p-5 text-left transition duration-300 ${
+                    className={`stagger-child lift-card rounded-3xl border p-5 text-left transition duration-300 ${
                       isSelected
                         ? 'border-sky-300 bg-sky-50 shadow-md ring-2 ring-sky-100'
                         : 'border-slate-200 bg-white hover:border-sky-200 hover:bg-sky-50/40'
@@ -397,9 +436,9 @@ function App() {
             </article>
           </div>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section-rise relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
+      <RevealSection className="relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
         <div className="soft-card mx-auto max-w-6xl bg-white/85 p-5 backdrop-blur sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -471,7 +510,7 @@ function App() {
                   {currentQuestion.question}
                 </h3>
 
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                <div className="stagger-list mt-6 grid gap-3 sm:grid-cols-2">
                   {currentQuestion.options.map((option, index) => {
                     const isSelected = selectedAnswer === option
                     const optionLetter = String.fromCharCode(65 + index)
@@ -481,7 +520,7 @@ function App() {
                         key={option}
                         type="button"
                         onClick={() => setSelectedAnswer(option)}
-                        className={`min-h-14 rounded-2xl border p-4 text-left transition duration-300 ${
+                        className={`stagger-child min-h-14 rounded-2xl border p-4 text-left transition duration-300 ${
                           isSelected
                             ? 'border-rose-300 bg-rose-100 text-slate-950 shadow-sm ring-2 ring-rose-100'
                             : 'border-slate-200 bg-white text-slate-700 hover:border-rose-200 hover:bg-rose-50/70'
@@ -531,9 +570,9 @@ function App() {
             </article>
           )}
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section-rise relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
+      <RevealSection className="relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
         <div className="soft-card mx-auto max-w-6xl bg-white/85 p-5 backdrop-blur sm:p-8">
           <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -562,14 +601,14 @@ function App() {
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="stagger-list grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {achievements.map((achievement) => {
               const isUnlocked = unlockedAchievementIds.includes(achievement.id)
 
               return (
                 <article
                   key={achievement.id}
-                  className={`rounded-3xl border p-5 transition duration-300 ${
+                  className={`stagger-child rounded-3xl border p-5 transition duration-300 ${
                     isUnlocked
                       ? 'border-amber-200 bg-amber-50/80 shadow-sm'
                       : 'border-slate-200 bg-white/70 text-slate-500'
@@ -608,9 +647,9 @@ function App() {
             Unlocks only live in this visit. No account, no database.
           </p>
         </div>
-      </section>
+      </RevealSection>
 
-      <section className="section-rise relative z-10 px-5 py-8 pb-16 sm:px-8 sm:py-10 lg:px-10">
+      <RevealSection className="relative z-10 px-5 py-8 pb-16 sm:px-8 sm:py-10 lg:px-10">
         <div className="soft-card mx-auto max-w-6xl bg-emerald-50/70 p-5 sm:p-8">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
             Leave Chengkai a Message
@@ -636,7 +675,7 @@ function App() {
             to become a whole bureaucratic system.
           </p>
         </div>
-      </section>
+      </RevealSection>
     </main>
   )
 }
