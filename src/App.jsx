@@ -89,44 +89,57 @@ function App() {
   const quizResult = getQuizResult(score)
 
   return (
-    <main className="min-h-screen bg-amber-50 text-slate-900">
-      <section className="mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 py-8 sm:px-8 lg:px-10">
-        <nav className="flex items-center justify-between border-b border-amber-200 pb-5">
-          <p className="text-lg font-semibold">CaiOS Public</p>
+    <main className="min-h-screen bg-[#fbfaf7] text-slate-900">
+      <section className="section-rise mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 py-8 sm:px-8 lg:px-10">
+        <nav className="flex items-center justify-between border-b border-slate-200/80 pb-5">
+          <p className="text-lg font-semibold tracking-tight">CaiOS Public</p>
           <p className="text-sm text-slate-500">Interactive personal space</p>
         </nav>
 
-        <div className="grid flex-1 items-center gap-12 py-12 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="grid flex-1 items-center gap-12 py-14 lg:grid-cols-[1.08fr_0.92fr]">
           <div>
             <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-amber-700">
               Welcome to
             </p>
-            <h1 className="text-5xl font-bold leading-tight text-slate-900 sm:text-6xl">
+            <h1 className="text-5xl font-bold leading-tight tracking-tight text-slate-950 sm:text-6xl">
               CaiOS Public
             </h1>
             <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-700">
               Hi, I&apos;m Chengkai. Welcome to CaiOS — my interactive personal space.
             </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <span className="rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800">
+                personal
+              </span>
+              <span className="rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-semibold text-sky-800">
+                thoughtful
+              </span>
+              <span className="rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-800">
+                a little playful
+              </span>
+            </div>
           </div>
 
           <div className="flex justify-center lg:justify-end">
-            <img
-              src={heroImage}
-              alt="Layered CaiOS symbol"
-              className="w-56 max-w-full sm:w-72"
-            />
+            <div className="soft-card flex aspect-square w-72 max-w-full items-center justify-center bg-white/80 p-8">
+              <img
+                src={heroImage}
+                alt="Layered CaiOS symbol"
+                className="w-56 max-w-full drop-shadow-sm sm:w-64"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="border-t border-amber-200 bg-white px-6 py-16 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-6xl">
+      <section className="section-rise px-6 py-10 sm:px-8 lg:px-10">
+        <div className="soft-card mx-auto max-w-6xl p-6 sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-amber-700">
                 Explore Me
               </p>
-              <h2 className="mt-2 text-3xl font-bold text-slate-900">
+              <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
                 Different sides of Chengkai
               </h2>
             </div>
@@ -145,25 +158,26 @@ function App() {
                     key={card.id}
                     type="button"
                     onClick={() => setSelectedCard(card)}
-                    className={`min-h-32 rounded-lg border p-5 text-left transition ${
+                    className={`lift-card min-h-32 rounded-lg border p-5 text-left transition duration-300 ${
                       isSelected
-                        ? 'border-amber-400 bg-amber-50 shadow-sm'
-                        : 'border-slate-200 bg-white hover:border-amber-300 hover:bg-amber-50/50'
+                        ? 'border-amber-300 bg-amber-50 shadow-sm'
+                        : 'border-slate-200 bg-white hover:border-amber-200'
                     }`}
                   >
-                    <span className="text-lg font-semibold text-slate-900">
-                      {card.title}
+                    <span className="text-lg font-semibold text-slate-950">{card.title}</span>
+                    <span className="mt-3 block text-sm leading-6 text-slate-500">
+                      {card.subtitle}
                     </span>
                   </button>
                 )
               })}
             </div>
 
-            <article className="rounded-lg border border-amber-200 bg-amber-50 p-6 text-slate-900 shadow-sm">
+            <article className="soft-card bg-amber-50/80 p-6">
               <p className="text-sm font-semibold uppercase tracking-wider text-amber-700">
                 Selected
               </p>
-              <h3 className="mt-3 text-2xl font-bold">{selectedCard.title}</h3>
+              <h3 className="mt-3 text-2xl font-bold tracking-tight">{selectedCard.title}</h3>
               <p className="mt-4 text-lg leading-8 text-slate-700">
                 {selectedCard.description}
               </p>
@@ -172,14 +186,14 @@ function App() {
         </div>
       </section>
 
-      <section className="border-t border-slate-200 bg-sky-50/70 px-6 py-16 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-6xl">
+      <section className="section-rise px-6 py-10 sm:px-8 lg:px-10">
+        <div className="soft-card mx-auto max-w-6xl p-6 sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-sky-700">
                 Ask Me by Mode
               </p>
-              <h2 className="mt-2 text-3xl font-bold text-slate-900">
+              <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
                 Questions for each side
               </h2>
             </div>
@@ -197,10 +211,10 @@ function App() {
                   key={mode.modeId}
                   type="button"
                   onClick={() => chooseMode(mode)}
-                  className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
+                  className={`rounded-full border px-4 py-2 text-sm font-semibold transition duration-300 ${
                     isSelected
                       ? 'border-sky-300 bg-sky-100 text-sky-800 shadow-sm'
-                      : 'border-slate-200 bg-white text-slate-700 hover:border-sky-300 hover:text-sky-700'
+                      : 'border-slate-200 bg-white text-slate-600 hover:border-sky-200 hover:bg-sky-50 hover:text-sky-800'
                   }`}
                 >
                   {mode.modeTitle}
@@ -219,13 +233,13 @@ function App() {
                     key={item.id}
                     type="button"
                     onClick={() => setSelectedQuestion(item)}
-                    className={`rounded-lg border p-5 text-left transition ${
+                    className={`lift-card rounded-lg border p-5 text-left transition duration-300 ${
                       isSelected
-                        ? 'border-sky-400 bg-white shadow-sm'
-                        : 'border-slate-200 bg-white/80 hover:border-sky-300 hover:bg-white'
+                        ? 'border-sky-300 bg-sky-50 shadow-sm'
+                        : 'border-slate-200 bg-white hover:border-sky-200'
                     }`}
                   >
-                    <span className="text-base font-semibold text-slate-900">
+                    <span className="text-base font-semibold text-slate-950">
                       {item.question}
                     </span>
                   </button>
@@ -233,11 +247,11 @@ function App() {
               })}
             </div>
 
-            <article className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+            <article key={selectedQuestion.id} className="answer-fade soft-card bg-white p-6">
               <p className="text-sm font-semibold uppercase tracking-wider text-sky-700">
                 {selectedMode.modeTitle}
               </p>
-              <h3 className="mt-3 text-2xl font-bold text-slate-900">
+              <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-950">
                 {selectedQuestion.question}
               </h3>
               <p className="mt-4 text-lg leading-8 text-slate-700">
@@ -248,22 +262,24 @@ function App() {
         </div>
       </section>
 
-      <section className="border-t border-rose-100 bg-rose-50/70 px-6 py-16 text-slate-900 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-6xl">
+      <section className="section-rise px-6 py-10 sm:px-8 lg:px-10">
+        <div className="soft-card mx-auto max-w-6xl p-6 sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-rose-700">
                 How well do you know Chengkai?
               </p>
-              <h2 className="mt-2 text-3xl font-bold">Daily-life quiz mode</h2>
+              <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
+                Daily-life quiz mode
+              </h2>
             </div>
-            <p className="max-w-md text-sm leading-6 text-slate-600">
+            <p className="max-w-md text-sm leading-6 text-slate-500">
               Enter your nickname, take a casual quiz, and see which CaiOS level you unlock.
             </p>
           </div>
 
           {!quizStarted && !showResult && (
-            <div className="rounded-lg border border-rose-100 bg-white p-6 shadow-sm">
+            <div className="soft-card bg-rose-50/70 p-6">
               <label htmlFor="visitor-name" className="text-sm font-semibold text-slate-800">
                 Nickname
               </label>
@@ -274,7 +290,7 @@ function App() {
                 value={visitorName}
                 onChange={(event) => setVisitorName(event.target.value)}
                 placeholder="What should CaiOS call you?"
-                className="mt-3 w-full rounded-lg border border-slate-200 bg-amber-50/50 px-4 py-3 text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-rose-300 focus:bg-white"
+                className="mt-3 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition duration-300 placeholder:text-slate-400 focus:border-rose-300 focus:shadow-sm"
               />
               <p className="mt-3 text-sm leading-6 text-slate-500">
                 For now, your nickname only stays in this browser session. A real message wall is
@@ -284,7 +300,7 @@ function App() {
                 type="button"
                 onClick={startQuiz}
                 disabled={visitorName.trim() === ''}
-                className="mt-6 rounded-full border border-rose-300 bg-rose-100 px-5 py-3 text-sm font-semibold text-rose-800 transition hover:bg-rose-200 disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
+                className="primary-button mt-6 disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:shadow-none"
               >
                 Start Quiz
               </button>
@@ -293,22 +309,27 @@ function App() {
 
           {quizStarted && !showResult && (
             <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
-              <aside className="rounded-lg border border-rose-100 bg-white p-6 shadow-sm">
+              <aside className="soft-card bg-rose-50/70 p-6">
                 <p className="text-sm font-semibold uppercase tracking-wider text-rose-700">
                   Player
                 </p>
-                <h3 className="mt-3 text-2xl font-bold">{visitorName.trim()}</h3>
+                <h3 className="mt-3 text-2xl font-bold tracking-tight">{visitorName.trim()}</h3>
                 <p className="mt-4 text-sm leading-6 text-slate-500">
                   Question {currentQuestionIndex + 1} of {quizQuestions.length}
                 </p>
                 <p className="mt-2 text-sm leading-6 text-slate-500">Current score: {score}</p>
               </aside>
 
-              <article className="rounded-lg border border-rose-100 bg-white p-6 shadow-sm">
+              <article
+                key={currentQuestion.id}
+                className="answer-fade soft-card bg-white p-6"
+              >
                 <p className="text-sm font-semibold uppercase tracking-wider text-rose-700">
                   Quiz Question
                 </p>
-                <h3 className="mt-3 text-2xl font-bold">{currentQuestion.question}</h3>
+                <h3 className="mt-3 text-2xl font-bold tracking-tight">
+                  {currentQuestion.question}
+                </h3>
 
                 <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   {currentQuestion.options.map((option, index) => {
@@ -320,10 +341,10 @@ function App() {
                         key={option}
                         type="button"
                         onClick={() => setSelectedAnswer(option)}
-                        className={`rounded-lg border p-4 text-left transition ${
+                        className={`rounded-lg border p-4 text-left transition duration-300 ${
                           isSelected
-                            ? 'border-rose-300 bg-rose-100 text-slate-900 shadow-sm'
-                            : 'border-slate-200 bg-amber-50/40 text-slate-700 hover:border-rose-200 hover:bg-white'
+                            ? 'border-rose-300 bg-rose-100 text-slate-950 shadow-sm'
+                            : 'border-slate-200 bg-white text-slate-700 hover:border-rose-200 hover:bg-rose-50/70'
                         }`}
                       >
                         <span className="text-sm font-semibold text-rose-600">
@@ -339,7 +360,7 @@ function App() {
                   type="button"
                   onClick={goToNextQuestion}
                   disabled={selectedAnswer === ''}
-                  className="mt-6 rounded-full border border-rose-300 bg-rose-100 px-5 py-3 text-sm font-semibold text-rose-800 transition hover:bg-rose-200 disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
+                  className="primary-button mt-6 disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:shadow-none"
                 >
                   {currentQuestionIndex === quizQuestions.length - 1 ? 'See Result' : 'Next'}
                 </button>
@@ -348,11 +369,11 @@ function App() {
           )}
 
           {showResult && (
-            <article className="rounded-lg border border-rose-100 bg-white p-6 shadow-sm">
+            <article className="answer-fade soft-card bg-rose-50/70 p-6">
               <p className="text-sm font-semibold uppercase tracking-wider text-rose-700">
                 Quiz Result
               </p>
-              <h3 className="mt-3 text-3xl font-bold">
+              <h3 className="mt-3 text-3xl font-bold tracking-tight">
                 Nice to meet you, {visitorName.trim()}.
               </h3>
               <p className="mt-4 text-lg text-slate-700">
@@ -362,11 +383,7 @@ function App() {
               <p className="mt-3 max-w-2xl text-lg leading-8 text-slate-700">
                 {quizResult.description}
               </p>
-              <button
-                type="button"
-                onClick={restartQuiz}
-                className="mt-6 rounded-full border border-rose-300 bg-rose-100 px-5 py-3 text-sm font-semibold text-rose-800 transition hover:bg-rose-200"
-              >
+              <button type="button" onClick={restartQuiz} className="primary-button mt-6">
                 Restart Quiz
               </button>
             </article>
@@ -374,15 +391,28 @@ function App() {
         </div>
       </section>
 
-      <section className="border-t border-emerald-100 bg-emerald-50/70 px-6 pb-16 text-slate-900 sm:px-8 lg:px-10">
-        <div className="mx-auto max-w-6xl rounded-lg border border-emerald-100 bg-white p-6 shadow-sm">
+      <section className="section-rise px-6 py-10 pb-16 sm:px-8 lg:px-10">
+        <div className="soft-card mx-auto max-w-6xl bg-emerald-50/70 p-6 sm:p-8">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
-            Leave Chengkai a message
+            Leave Chengkai a Message
           </p>
-          <p className="mt-3 max-w-3xl text-lg leading-8 text-slate-700">
-            Soon, visitors will be able to leave questions, suggestions, encouragement, food
-            recommendations, movie recommendations, or random thoughts here. For now, this is a
-            placeholder for the future message system.
+          <h2 className="mt-2 max-w-4xl text-3xl font-bold tracking-tight text-slate-950">
+            A tiny message box for questions, recommendations, encouragement, or random thoughts.
+          </h2>
+          <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">
+            You can leave a nickname and a short message. It can be anything: a question, a food
+            recommendation, a show recommendation, a random thought, or just something nice.
+          </p>
+          <a
+            href="https://tally.so/r/ODjV6k"
+            target="_blank"
+            rel="noreferrer"
+            className="mt-6 inline-flex rounded-full border border-emerald-300 bg-white px-5 py-3 text-sm font-semibold text-emerald-800 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-emerald-100 hover:shadow-md"
+          >
+            Send to Chengkai
+          </a>
+          <p className="mt-4 text-sm leading-6 text-slate-500">
+            This form is powered by Tally. It only asks for a nickname and a message.
           </p>
         </div>
       </section>
