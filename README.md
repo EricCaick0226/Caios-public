@@ -1,5 +1,7 @@
 # CaiOS Public
 
+Live Site: https://caios-public.vercel.app/
+
 ## Overview
 
 CaiOS Public is an interactive personal website for Chengkai. It is not a normal portfolio page. It is a small personal operating system, digital diary, and interactive zine where visitors can explore different sides of me, ask questions by mode, take a casual quiz, and leave a message.
