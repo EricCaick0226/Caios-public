@@ -88,9 +88,15 @@ function App() {
 
   const quizResult = getQuizResult(score)
 
+  const quizProgress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100
+
   return (
-    <main className="min-h-screen bg-[#fbfaf7] text-slate-900">
-      <section className="section-rise mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 py-8 sm:px-8 lg:px-10">
+    <main className="relative min-h-screen overflow-hidden bg-[#fbfaf7] text-slate-900">
+      <div className="pointer-events-none absolute left-[-10rem] top-20 h-80 w-80 rounded-full bg-amber-200/40 blur-3xl" />
+      <div className="pointer-events-none absolute right-[-8rem] top-[28rem] h-96 w-96 rounded-full bg-sky-200/35 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-40 left-1/4 h-80 w-80 rounded-full bg-emerald-200/30 blur-3xl" />
+
+      <section className="section-rise relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 py-8 sm:px-8 lg:px-10">
         <nav className="flex items-center justify-between border-b border-slate-200/80 pb-5">
           <p className="text-lg font-semibold tracking-tight">CaiOS Public</p>
           <p className="text-sm text-slate-500">Interactive personal space</p>
@@ -98,8 +104,8 @@ function App() {
 
         <div className="grid flex-1 items-center gap-12 py-14 lg:grid-cols-[1.08fr_0.92fr]">
           <div>
-            <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-amber-700">
-              Welcome to
+            <p className="mb-5 inline-flex rounded-full border border-amber-200 bg-white/75 px-4 py-2 text-sm font-semibold text-amber-800 shadow-sm backdrop-blur">
+              Welcome to CaiOS
             </p>
             <h1 className="text-5xl font-bold leading-tight tracking-tight text-slate-950 sm:text-6xl">
               CaiOS Public
@@ -108,20 +114,26 @@ function App() {
               Hi, I&apos;m Chengkai. Welcome to CaiOS — my interactive personal space.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <span className="rounded-full border border-amber-200 bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800">
-                personal
+              <span className="float-tag rounded-full border border-sky-200 bg-white/80 px-4 py-2 text-sm font-semibold text-sky-800 shadow-sm">
+                NYU
               </span>
-              <span className="rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-sm font-semibold text-sky-800">
-                thoughtful
+              <span className="float-tag rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-sm font-semibold text-emerald-800 shadow-sm">
+                Food Mode
               </span>
-              <span className="rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-800">
-                a little playful
+              <span className="float-tag rounded-full border border-rose-200 bg-white/80 px-4 py-2 text-sm font-semibold text-rose-800 shadow-sm">
+                CaiOS Quiz
               </span>
             </div>
           </div>
 
           <div className="flex justify-center lg:justify-end">
-            <div className="soft-card flex aspect-square w-72 max-w-full items-center justify-center bg-white/80 p-8">
+            <div className="soft-card relative flex aspect-square w-72 max-w-full items-center justify-center bg-white/80 p-8 backdrop-blur sm:w-80">
+              <span className="absolute -left-4 top-8 rounded-2xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-semibold text-amber-800 shadow-sm">
+                diary layer
+              </span>
+              <span className="absolute -right-5 bottom-10 rounded-2xl border border-sky-200 bg-sky-50 px-3 py-2 text-xs font-semibold text-sky-800 shadow-sm">
+                public beta
+              </span>
               <img
                 src={heroImage}
                 alt="Layered CaiOS symbol"
@@ -132,7 +144,7 @@ function App() {
         </div>
       </section>
 
-      <section className="section-rise px-6 py-10 sm:px-8 lg:px-10">
+      <section className="section-rise relative z-10 px-6 py-10 sm:px-8 lg:px-10">
         <div className="soft-card mx-auto max-w-6xl p-6 sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -158,7 +170,7 @@ function App() {
                     key={card.id}
                     type="button"
                     onClick={() => setSelectedCard(card)}
-                    className={`lift-card min-h-32 rounded-lg border p-5 text-left transition duration-300 ${
+                    className={`lift-card min-h-32 rounded-3xl border p-5 text-left transition duration-300 ${
                       isSelected
                         ? 'border-amber-300 bg-amber-50 shadow-sm'
                         : 'border-slate-200 bg-white hover:border-amber-200'
@@ -173,7 +185,7 @@ function App() {
               })}
             </div>
 
-            <article className="soft-card bg-amber-50/80 p-6">
+            <article className="answer-fade soft-card bg-amber-50/80 p-6">
               <p className="text-sm font-semibold uppercase tracking-wider text-amber-700">
                 Selected
               </p>
@@ -186,7 +198,7 @@ function App() {
         </div>
       </section>
 
-      <section className="section-rise px-6 py-10 sm:px-8 lg:px-10">
+      <section className="section-rise relative z-10 px-6 py-10 sm:px-8 lg:px-10">
         <div className="soft-card mx-auto max-w-6xl p-6 sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -202,7 +214,7 @@ function App() {
             </p>
           </div>
 
-          <div className="mb-6 flex flex-wrap gap-3">
+          <div className="mb-6 flex flex-wrap gap-3 rounded-full border border-slate-200 bg-white/70 p-2 shadow-sm">
             {modeQuestions.map((mode) => {
               const isSelected = selectedMode.modeId === mode.modeId
 
@@ -233,7 +245,7 @@ function App() {
                     key={item.id}
                     type="button"
                     onClick={() => setSelectedQuestion(item)}
-                    className={`lift-card rounded-lg border p-5 text-left transition duration-300 ${
+                    className={`lift-card rounded-3xl border p-5 text-left transition duration-300 ${
                       isSelected
                         ? 'border-sky-300 bg-sky-50 shadow-sm'
                         : 'border-slate-200 bg-white hover:border-sky-200'
@@ -249,7 +261,7 @@ function App() {
 
             <article key={selectedQuestion.id} className="answer-fade soft-card bg-white p-6">
               <p className="text-sm font-semibold uppercase tracking-wider text-sky-700">
-                {selectedMode.modeTitle}
+                CaiOS answers · {selectedMode.modeTitle}
               </p>
               <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-950">
                 {selectedQuestion.question}
@@ -262,7 +274,7 @@ function App() {
         </div>
       </section>
 
-      <section className="section-rise px-6 py-10 sm:px-8 lg:px-10">
+      <section className="section-rise relative z-10 px-6 py-10 sm:px-8 lg:px-10">
         <div className="soft-card mx-auto max-w-6xl p-6 sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -317,6 +329,12 @@ function App() {
                 <p className="mt-4 text-sm leading-6 text-slate-500">
                   Question {currentQuestionIndex + 1} of {quizQuestions.length}
                 </p>
+                <div className="mt-4 h-3 overflow-hidden rounded-full bg-white shadow-inner">
+                  <div
+                    className="h-full rounded-full bg-rose-300 transition-all duration-500"
+                    style={{ width: `${quizProgress}%` }}
+                  />
+                </div>
                 <p className="mt-2 text-sm leading-6 text-slate-500">Current score: {score}</p>
               </aside>
 
@@ -325,7 +343,7 @@ function App() {
                 className="answer-fade soft-card bg-white p-6"
               >
                 <p className="text-sm font-semibold uppercase tracking-wider text-rose-700">
-                  Quiz Question
+                  Question {currentQuestionIndex + 1} / {quizQuestions.length}
                 </p>
                 <h3 className="mt-3 text-2xl font-bold tracking-tight">
                   {currentQuestion.question}
@@ -379,7 +397,9 @@ function App() {
               <p className="mt-4 text-lg text-slate-700">
                 Final score: {score} / {quizQuestions.length}
               </p>
-              <p className="mt-4 text-2xl font-bold text-rose-700">{quizResult.title}</p>
+              <p className="mt-5 inline-flex rounded-2xl border border-rose-200 bg-white px-5 py-3 text-2xl font-bold text-rose-700 shadow-sm">
+                {quizResult.title}
+              </p>
               <p className="mt-3 max-w-2xl text-lg leading-8 text-slate-700">
                 {quizResult.description}
               </p>
@@ -391,7 +411,7 @@ function App() {
         </div>
       </section>
 
-      <section className="section-rise px-6 py-10 pb-16 sm:px-8 lg:px-10">
+      <section className="section-rise relative z-10 px-6 py-10 pb-16 sm:px-8 lg:px-10">
         <div className="soft-card mx-auto max-w-6xl bg-emerald-50/70 p-6 sm:p-8">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
             Leave Chengkai a Message
