@@ -1,129 +1,129 @@
 export const exploreCards = [
   {
     id: 'nyu-mode',
-    title: 'NYU Mode',
-    subtitle: 'Trying to grow in a city that never slows down.',
+    title: 'NYU Map',
+    subtitle: 'First level: do normal life things alone.',
     description:
-      'NYU is where I am learning how to become more independent, more focused, and more comfortable with uncertainty. Some days I feel inspired by the city. Some days I feel like everyone is moving faster than me. But I think that tension is part of my NYU experience: learning in class, learning from people, and learning how to not lose myself in a very fast place.',
+      'Difficulty: ****. First mission: do things alone. Eat alone, walk alone, get sick, buy medicine, go back to Bobst. Not cinematic. Very effective.',
   },
   {
     id: 'anxiety-mode',
-    title: 'Anxiety Mode',
-    subtitle: 'Overthinking, but still moving.',
+    title: 'Background App',
+    subtitle: 'Anxiety is open, but the system still runs.',
     description:
-      'I overthink because I care. I think a lot about school, the future, internships, research, and whether I am moving fast enough. I am not trying to pretend that I am always calm. I am learning how to turn anxiety into smaller steps, better questions, and a little more structure. This mode is not the most polished version of me, but it is probably one of the most honest.',
+      'Status: running. Background anxiety checks school, plans, messages, deadlines, and whether everyone else secretly has a better manual. CaiOS still works. Battery drains faster.',
   },
   {
     id: 'rest-mode',
-    title: 'Rest Mode',
-    subtitle: 'The side of me that is learning how to pause.',
+    title: 'Recovery Protocol',
+    subtitle: 'Walking, shopping, eating, and calling it balance.',
     description:
-      'Rest does not come naturally to me. Sometimes even when I am resting, my brain is still trying to make a plan. But I am learning that doing nothing is not always wasting time. Walking around the city, listening to music, watching something, eating slowly, or just staying quiet for a while can also be part of growing.',
+      'Recovery items: walking around NYC, Japanese food, shopping, shows, carbs. Warning: may still think about tomorrow while pretending to rest. Leaving Bobst also helps.',
   },
   {
     id: 'memory-mode',
-    title: 'Memory Mode',
-    subtitle: 'The past version of me that still explains a lot.',
+    title: 'Old Save File',
+    subtitle: 'Yellow pencil lore and another version of me.',
     description:
-      'I did not arrive here with everything figured out. A lot of who I am comes from trying to catch up, trying to prove that I can learn hard things, and slowly building confidence from the ground up. My past self was not always confident, but he kept going. I think I owe him more credit than I usually give him.',
+      'Contains: yellow pencil, childhood excavator dream, serious little Chengkai, too much proving himself. Do not delete. Past me was dramatic, but he had stamina.',
   },
   {
     id: 'food-mode',
-    title: 'Food Mode',
-    subtitle: 'Probably the easiest way to understand me.',
+    title: 'Food Battery',
+    subtitle: 'Japanese food, salmon, carbs, Diet Coke, system restored.',
     description:
-      'Food is one of the simplest ways I connect with a place and with people. A good meal can make a stressful day feel less dramatic. I like the small rituals around food: deciding where to go, walking there, sharing something, trying something new, or returning to the same comfort place again and again. Not everything about life needs to be optimized. Some things should just taste good.',
+      'Restore items: nigiri, salmon, curry rice, carbs, Japanese tea, Diet Coke. A good meal does not fix life. It does make the next two hours more reasonable.',
   },
 ]
 
 export const modeQuestions = [
   {
     modeId: 'nyu',
-    modeTitle: 'NYU Mode',
+    modeTitle: 'NYU Map',
     questions: [
       {
         id: 'nyu-feel',
-        question: 'What does NYU feel like to you?',
+        question: 'What was the first NYU level?',
         answer:
-          'NYU feels exciting, but also lonely sometimes. I came from a Chinese high school system where life had a much clearer structure, so being here feels like suddenly entering a place with too many directions open at once. There are so many opportunities — classes, people, clubs, study away programs, and the whole city around me — but that freedom can also feel overwhelming. New York moves very fast, and I am not naturally a fast-paced person. I like to take things slowly, understand them carefully, and find my own rhythm. So part of my NYU experience is learning how to live in a place that moves faster than I do.',
+          'Eating alone was weird at first. Walking alone was fine until I realized I had to actually choose where to go. Getting sick and buying medicine by myself felt like a very boring boss fight. After that I thought: okay, annoying, but I can handle this.',
       },
       {
         id: 'nyu-growing-up',
-        question: 'When did you feel that you were starting to grow up here?',
+        question: 'When did New York force a system update?',
         answer:
-          'I think I started to feel it in very ordinary moments. Eating alone, walking around the city alone, buying medicine when I was sick, figuring out small problems by myself — none of these moments looked dramatic, but they changed me. They made me realize that I could not always wait for someone else to arrange things for me. I had to become a little more active, a little more open, and a little more willing to handle life by myself. NYU is not only teaching me through classes. It is also teaching me through all these small moments of independence.',
+          'Probably the first time I had a full day of class, errands, food, subway confusion, and Bobst. Nobody was going to press pause for me. New York basically said: update now or crash later.',
       },
     ],
   },
   {
     modeId: 'anxiety',
-    modeTitle: 'Anxiety Mode',
+    modeTitle: 'Background App',
     questions: [
       {
         id: 'anxiety-source',
-        question: 'What makes you anxious?',
+        question: 'What does background anxiety sound like?',
         answer:
-          'A lot of my anxiety comes from progress. I worry about whether I am learning fast enough, whether my foundation is strong enough, and whether I will be ready for internships, research, and the future I want. Sometimes when I see other people looking more successful, more relaxed, or simply happier, I compare myself to them and wonder if I am falling behind. It is not always rational, but it feels real.',
+          'It sounds like a tiny tab asking: did you plan enough? did you study enough? why does that person look so relaxed? I can be eating salmon and still hear it refreshing.',
       },
       {
         id: 'anxiety-feeling',
-        question: 'What does anxiety feel like for you?',
+        question: 'Does CaiOS still function with that tab open?',
         answer:
-          'For me, anxiety is not just a sudden feeling that appears once in a while. It is more like background noise that is almost always there. When I feel anxious, I start asking myself why I am anxious, whether I am doing enough, and what I should fix next. Sometimes I feel a little panicked inside, even if nothing dramatic is happening outside. I think I have lived with this feeling for so long that I am used to it, but being used to it does not mean it is easy.',
+          'Yes. I go to class, reply to messages, make plans, drink Diet Coke, and look normal enough. Close friends get the unlocked version: jokes, overthinking, and a lot of “wait, but what if...”',
       },
     ],
   },
   {
     modeId: 'rest',
-    modeTitle: 'Rest Mode',
+    modeTitle: 'Recovery Protocol',
     questions: [
       {
         id: 'rest-look',
-        question: 'What does rest look like for you?',
+        question: 'What counts as rest in CaiOS?',
         answer:
-          'Rest usually looks very simple for me: walking, shopping, eating, sleeping, or watching something. As long as it has nothing to do with studying, I can feel genuinely happy for a while. I do not always need a big trip or a special plan. Sometimes just walking outside, eating something good, or lying down after a long day is enough.',
+          'Walking around NYC counts. Eating Japanese food counts. Shopping counts if I do not look too closely at the receipt. Watching shows counts. Studying more does not count, even if my brain tries to sneak it in.',
       },
       {
         id: 'rest-guilt',
-        question: 'Do you feel guilty when you rest?',
+        question: 'Is Chengkai actually good at resting?',
         answer:
-          'Not really, because I usually rest after I finish what I planned to do. I do not like being chased by deadlines, so I try to complete my work first and then relax without feeling guilty. On weekdays, I mostly study and only rest a little at night. On weekends, I usually keep one day for studying and one day for enjoying life. For me, rest feels best when I know I have already taken care of what I needed to do.',
+          'Medium. I like finishing the planned tasks first. Then I can rest without the deadline chasing me down the street. Ideal weekend: one study day, one life day. Reality: please do not audit.',
       },
     ],
   },
   {
     modeId: 'memory',
-    modeTitle: 'Memory Mode',
+    modeTitle: 'Old Save File',
     questions: [
       {
         id: 'memory-shape',
-        question: 'How does your past still shape you?',
+        question: 'What is hidden in the old save file?',
         answer:
-          'Coming from a Chinese high school system gave me a strong ability to study and a relatively solid academic foundation. In some classes, I can feel that this background helps me learn faster and handle pressure better. But it also shaped me in another way: I became deeply influenced by meritocracy. I often feel the need to reach higher academic goals and use studying as a way to prove myself. So my past gave me discipline, but it also gave me a standard that can be hard to escape.',
+          'A yellow pencil. A childhood excavator dream. A younger Chengkai who thought proving himself was the main quest. He was too serious sometimes, but honestly, he carried.',
       },
       {
         id: 'memory-past-self',
-        question: 'What would you say to your past self?',
+        question: 'Would you restart from that save?',
         answer:
-          'I would probably say: high school was not as terrible as you thought. When you get to college, you will understand what real suffering feels like. But I would say that with a little humor, not complete bitterness. Looking back, high school gave me something. It trained me, pushed me, and made me tougher than I realized. I just wish my past self knew that being strong does not always mean being hard on yourself.',
+          'Restart? No. Visit? Maybe. I would tell him to keep the weird lore and stop treating every small mistake like a final exam. Also the yellow pencil becomes funnier later.',
       },
     ],
   },
   {
     modeId: 'food',
-    modeTitle: 'Food Mode',
+    modeTitle: 'Food Battery',
     questions: [
       {
         id: 'food-alive',
-        question: 'What kind of food makes you feel alive in New York?',
+        question: 'What restores Food Battery fastest?',
         answer:
-          'I really like Japanese food in New York. There are so many good places for soba, sushi, katsu don, curry rice, gyudon, and small comfort meals that make a day feel better. I also like Korean food, and I have to admit that New York milk tea is dangerously good. I am not the biggest fan of Western food, but Asian food in New York makes me very happy.',
+          'Japanese food. Nigiri, salmon, curry rice, gyudon, soba, and carbs in general. Japanese tea if I want to feel calm. Diet Coke if I want to feel like I made a questionable but correct decision.',
       },
       {
         id: 'food-meaning',
-        question: 'What does food mean to you besides taste?',
+        question: 'Why does food fix the mood so fast?',
         answer:
-          'Food is one of the ways I relieve stress, explore New York, and reward myself. Almost every week, I try to go out and eat something I actually like. It gives me a small sense of freedom: choosing a place, walking there, sitting down, and letting myself enjoy something without turning it into another task. Sometimes a good meal is enough to make life feel lighter.',
+          'Because it is simple. Pick a place, walk there, sit down, eat something good. No essay needed. The day is not solved, but it becomes less annoying for a while.',
       },
     ],
   },
@@ -132,61 +132,61 @@ export const modeQuestions = [
 export const quizQuestions = [
   {
     id: 'favorite-club',
-    question: 'What is Chengkai’s favorite football club?',
+    question: 'Which club owns the Chengkai football save file?',
     options: ['FC Barcelona', 'Real Madrid', 'Atlético Madrid', 'Valencia CF'],
     correctAnswer: 'FC Barcelona',
   },
   {
     id: 'favorite-player',
-    question: 'Who is Chengkai’s favorite football player?',
-    options: ['Andrés Iniesta', 'Xavi', 'Ivan Rakitic', 'Sergio Busquets'],
-    correctAnswer: 'Ivan Rakitic',
+    question: 'Which Barcelona midfielder has suspiciously strong Chengkai lore?',
+    options: ['Andrés Iniesta', 'Xavi', 'Ivan Rakitić', 'Sergio Busquets'],
+    correctAnswer: 'Ivan Rakitić',
   },
   {
     id: 'favorite-food',
-    question: 'What kind of food does Chengkai like the most?',
+    question: 'Which food category restores Chengkai fastest?',
     options: ['Japanese food', 'Korean food', 'Chinese food', 'Thai food'],
     correctAnswer: 'Japanese food',
   },
   {
     id: 'rest-in-new-york',
-    question: 'What does Chengkai like to do to rest in New York?',
+    question: 'What counts as a very Chengkai rest activity in New York?',
     options: ['Sit in a coffee shop', 'Walk around', 'Browse bookstores', 'Go shopping'],
     correctAnswer: 'Walk around',
   },
   {
     id: 'usual-drink',
-    question: 'What drink does Chengkai often choose?',
+    question: 'Which drink appears in the Chengkai settings surprisingly often?',
     options: ['Iced Americano', 'Diet Coke', 'Coke Zero', 'Sparkling water'],
     correctAnswer: 'Diet Coke',
   },
   {
     id: 'schedule-style',
-    question: 'What kind of schedule fits Chengkai better?',
+    question: 'Which schedule setting fits Chengkai best?',
     options: ['Morning person', 'Night owl', 'Late-morning person', 'Deadline-driven schedule'],
     correctAnswer: 'Morning person',
   },
   {
     id: 'city-vibe',
-    question: 'What city vibe does Chengkai like the most?',
+    question: 'Which city vibe feels most like a Chengkai comfort map?',
     options: ['Tokyo', 'Kyoto', 'Osaka', 'Nara'],
     correctAnswer: 'Kyoto',
   },
   {
     id: 'eating-style',
-    question: 'How does Chengkai usually prefer to eat?',
+    question: 'Which eating setup is most Chengkai-coded?',
     options: ['Alone', 'With one close friend', 'With a small group', 'With a big group'],
     correctAnswer: 'Alone',
   },
   {
     id: 'stress-relief',
-    question: 'What does Chengkai often do to relieve stress?',
+    question: 'Which low-effort stress relief setting gets used a lot?',
     options: ['Watch shows', 'Take a nap', 'Eat something good', 'Walk outside'],
     correctAnswer: 'Watch shows',
   },
   {
     id: 'remembered-for',
-    question: 'What does Chengkai hope people remember about him?',
+    question: 'Which trait would Chengkai be happiest to be remembered for?',
     options: ['Thoughtful', 'Sincere', 'Humorous', 'Hardworking'],
     correctAnswer: 'Humorous',
   },

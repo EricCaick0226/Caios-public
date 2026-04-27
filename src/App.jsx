@@ -25,7 +25,7 @@ function App() {
       return {
         title: 'CaiOS Visitor',
         description:
-          'You just entered CaiOS and clicked around politely. There is still a lot to unlock: food opinions, football lore, and the quiet anxiety settings.',
+          'You made it through the front door. CaiOS is still checking your visitor badge, and the Diet Coke file remains mostly locked.',
       }
     }
 
@@ -33,7 +33,7 @@ function App() {
       return {
         title: 'CaiOS Observer',
         description:
-          'You know a few real things about Chengkai. Not everything, but enough to understand that he is probably thinking about food, school, or Barcelona at any given moment.',
+          'You noticed some surface lore: food matters, Barcelona matters, and the anxiety tab is probably open. Respectable progress.',
       }
     }
 
@@ -41,14 +41,14 @@ function App() {
       return {
         title: 'CaiOS Friend',
         description:
-          'You know Chengkai pretty well. You understand the daily-life settings: walking, eating, worrying a little, trying hard, and still finding something funny in the middle.',
+          'You know enough to be mildly dangerous. You understand walking around NYC, Japanese food, background anxiety, and the fact that rest may still involve planning.',
       }
     }
 
     return {
       title: 'CaiOS Core Member',
       description:
-        'You are basically inside the system. You know the football, food, city, rest, and humor settings. Please use this power gently.',
+        'You know too much. Please do not leak the yellow pencil lore, the Barcelona settings, or the exact emotional importance of salmon nigiri.',
     }
   }
 
@@ -101,34 +101,35 @@ function App() {
       <section className="section-rise relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 py-6 sm:px-8 sm:py-8 lg:px-10">
         <nav className="flex flex-col gap-2 border-b border-slate-200/80 pb-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-lg font-semibold tracking-tight">CaiOS Public</p>
-          <p className="text-sm text-slate-500">Interactive personal space</p>
+          <p className="text-sm text-slate-500">soft save file · public version</p>
         </nav>
 
         <div className="grid flex-1 items-center gap-10 py-12 sm:py-14 lg:grid-cols-[1.08fr_0.92fr]">
           <div>
             <p className="mb-5 inline-flex rounded-full border border-amber-200 bg-white/75 px-4 py-2 text-sm font-semibold text-amber-800 shadow-sm backdrop-blur">
-              Welcome to CaiOS · public build
+              Welcome to CaiOS · public save file
             </p>
             <h1 className="text-5xl font-bold leading-tight tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
               CaiOS Public
             </h1>
             <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-700">
-              Hi, I&apos;m Chengkai. Welcome to the friendly version of my internal operating
-              system: part diary, part quiz, part food-and-feelings interface.
+              Not really a portfolio. More like a tiny public save file for Chengkai: NYU life,
+              Japanese food, background anxiety, Barcelona lore, and small attempts at becoming an
+              actual adult.
             </p>
             <p className="mt-4 max-w-xl text-base leading-7 text-slate-500">
-              Best opened with curiosity, a snack, and zero expectation that I have everything
-              figured out.
+              Best opened with curiosity, carbs nearby, and low expectations that I have solved
+              life.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <span className="float-tag rounded-full border border-sky-200 bg-white/80 px-4 py-2 text-sm font-semibold text-sky-800 shadow-sm">
-                NYU
+                NYU Map
               </span>
               <span className="float-tag rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-sm font-semibold text-emerald-800 shadow-sm">
-                Food Mode
+                Food Battery
               </span>
               <span className="float-tag rounded-full border border-rose-200 bg-white/80 px-4 py-2 text-sm font-semibold text-rose-800 shadow-sm">
-                CaiOS Quiz
+                Friend Check
               </span>
             </div>
           </div>
@@ -136,10 +137,10 @@ function App() {
           <div className="flex justify-center lg:justify-end">
             <div className="soft-card relative flex aspect-square w-72 max-w-full items-center justify-center bg-white/80 p-8 backdrop-blur sm:w-80">
               <span className="absolute left-3 top-5 rounded-2xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-semibold text-amber-800 shadow-sm sm:-left-4 sm:top-8">
-                diary layer: on
+                Bobst tab open
               </span>
               <span className="absolute bottom-5 right-3 rounded-2xl border border-sky-200 bg-sky-50 px-3 py-2 text-xs font-semibold text-sky-800 shadow-sm sm:-right-5 sm:bottom-10">
-                mood: sincere
+                Diet Coke ready
               </span>
               <img
                 src={heroImage}
@@ -159,11 +160,11 @@ function App() {
                 Explore Me
               </p>
               <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-                Different sides of Chengkai
+                Choose a Chengkai widget
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-slate-500">
-              Tap a soft widget to open one small side of the system.
+              Tap one widget. Some are useful. Some are just me trying to be normal in public.
             </p>
           </div>
 
@@ -195,7 +196,7 @@ function App() {
 
             <article key={selectedCard.id} className="answer-fade soft-card bg-amber-50/80 p-6">
               <p className="text-sm font-semibold uppercase tracking-wider text-amber-700">
-                Selected
+                Widget open
               </p>
               <h3 className="mt-3 text-2xl font-bold tracking-tight">{selectedCard.title}</h3>
               <p className="mt-4 text-lg leading-8 text-slate-700">
@@ -214,11 +215,12 @@ function App() {
                 Ask Me by Mode
               </p>
               <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-                Questions for each side
+                Tiny prompts, honest answers
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-slate-500">
-              Each mode has its own questions. Pick a tab, then let CaiOS answer in full sentences.
+              Pick a tab. CaiOS opens a small drawer. Some drawers contain food. Some contain
+              background anxiety.
             </p>
           </div>
 
@@ -269,7 +271,7 @@ function App() {
 
             <article key={selectedQuestion.id} className="answer-fade soft-card bg-white p-6 sm:p-7">
               <p className="text-sm font-semibold uppercase tracking-wider text-sky-700">
-                CaiOS answers · {selectedMode.modeTitle}
+                CaiOS note · {selectedMode.modeTitle}
               </p>
               <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-950">
                 {selectedQuestion.question}
@@ -290,12 +292,11 @@ function App() {
                 How well do you know Chengkai?
               </p>
               <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-                Daily-life quiz mode
+                A tiny friend check
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-slate-500">
-              Enter your nickname, answer some friend-style questions, and see which CaiOS level
-              you unlock.
+              Enter a nickname, guess the daily-life lore, and see what level of access you unlock.
             </p>
           </div>
 
@@ -310,12 +311,12 @@ function App() {
                 required
                 value={visitorName}
                 onChange={(event) => setVisitorName(event.target.value)}
-                placeholder="What should CaiOS call you?"
+                placeholder="Your visitor name"
                 className="mt-3 w-full rounded-lg border border-slate-200 bg-white px-4 py-3 text-slate-900 outline-none transition duration-300 placeholder:text-slate-400 focus:border-rose-300 focus:shadow-sm"
               />
               <p className="mt-3 text-sm leading-6 text-slate-500">
-                For now, your nickname only stays in this browser session. A real message wall is
-                coming later.
+                CaiOS only remembers this during the current browser session. No database, no
+                dramatic surveillance arc.
               </p>
               <button
                 type="button"
@@ -323,7 +324,7 @@ function App() {
                 disabled={visitorName.trim() === ''}
                 className="primary-button mt-6 disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:shadow-none"
               >
-                Start the friend check
+                Start Friend Check
               </button>
             </div>
           )}
@@ -332,11 +333,11 @@ function App() {
             <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
               <aside className="soft-card bg-rose-50/70 p-5 sm:p-6">
                 <p className="text-sm font-semibold uppercase tracking-wider text-rose-700">
-                  Player
+                  Visitor badge
                 </p>
                 <h3 className="mt-3 text-2xl font-bold tracking-tight">{visitorName.trim()}</h3>
                 <p className="mt-4 text-sm leading-6 text-slate-500">
-                  Question {currentQuestionIndex + 1} of {quizQuestions.length}
+                  Friend check {currentQuestionIndex + 1} of {quizQuestions.length}
                 </p>
                 <div className="mt-4 h-3 overflow-hidden rounded-full bg-white shadow-inner">
                   <div
@@ -344,12 +345,12 @@ function App() {
                     style={{ width: `${quizProgress}%` }}
                   />
                 </div>
-                <p className="mt-2 text-sm leading-6 text-slate-500">Current score: {score}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-500">Lore points: {score}</p>
               </aside>
 
               <article key={currentQuestion.id} className="answer-fade soft-card bg-white p-5 sm:p-6">
                 <p className="text-sm font-semibold uppercase tracking-wider text-rose-700">
-                  Question {currentQuestionIndex + 1} / {quizQuestions.length}
+                  CaiOS prompt {currentQuestionIndex + 1} / {quizQuestions.length}
                 </p>
                 <h3 className="mt-3 text-2xl font-bold tracking-tight">
                   {currentQuestion.question}
@@ -386,7 +387,7 @@ function App() {
                   disabled={selectedAnswer === ''}
                   className="primary-button mt-6 disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:shadow-none"
                 >
-                  {currentQuestionIndex === quizQuestions.length - 1 ? 'See Result' : 'Next'}
+                  {currentQuestionIndex === quizQuestions.length - 1 ? 'Reveal Level' : 'Next'}
                 </button>
               </article>
             </div>
@@ -395,13 +396,13 @@ function App() {
           {showResult && (
             <article className="answer-fade soft-card bg-rose-50/70 p-5 sm:p-7">
               <p className="text-sm font-semibold uppercase tracking-wider text-rose-700">
-                Quiz Result
+                Friend Check Result
               </p>
               <h3 className="mt-3 text-3xl font-bold tracking-tight">
                 Nice to meet you, {visitorName.trim()}.
               </h3>
               <p className="mt-4 text-lg text-slate-700">
-                Final score: {score} / {quizQuestions.length}
+                Lore points: {score} / {quizQuestions.length}
               </p>
               <p className="mt-5 inline-flex rounded-3xl border border-rose-200 bg-white px-5 py-3 text-2xl font-bold text-rose-700 shadow-sm">
                 {quizResult.title}
@@ -410,7 +411,7 @@ function App() {
                 {quizResult.description}
               </p>
               <button type="button" onClick={restartQuiz} className="primary-button mt-6">
-                Restart Quiz
+                Restart Friend Check
               </button>
             </article>
           )}
@@ -423,12 +424,11 @@ function App() {
             Leave Chengkai a Message
           </p>
           <h2 className="mt-2 max-w-4xl text-3xl font-bold tracking-tight text-slate-950">
-            A tiny message box for questions, recommendations, encouragement, or random thoughts.
+            Send a note into the public save file.
           </h2>
           <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">
-            Send a small note from your side of the internet. It can be a food recommendation, a
-            show recommendation, a question, a random thought, or a tiny encouragement for a day
-            when New York feels too fast.
+            Random thoughts are welcome. Food recommendations are very welcome. Questions, small
+            notes, show recommendations, or “I found a bug in CaiOS” comments are also accepted.
           </p>
           <a
             href="https://tally.so/r/ODjV6k"
@@ -439,7 +439,8 @@ function App() {
             Send to Chengkai
           </a>
           <p className="mt-4 text-sm leading-6 text-slate-500">
-            This form is powered by Tally. It only asks for a nickname and a message.
+            Powered by Tally. It only asks for a nickname and a message, because this does not need
+            to become a whole bureaucratic system.
           </p>
         </div>
       </section>
