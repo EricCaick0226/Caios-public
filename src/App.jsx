@@ -24,14 +24,16 @@ function App() {
     if (finalScore <= 3) {
       return {
         title: 'CaiOS Visitor',
-        description: 'You just entered the system. There is still a lot to discover.',
+        description:
+          'You just entered CaiOS and clicked around politely. There is still a lot to unlock: food opinions, football lore, and the quiet anxiety settings.',
       }
     }
 
     if (finalScore <= 6) {
       return {
         title: 'CaiOS Observer',
-        description: 'You know a few things about Chengkai, but the system has more layers.',
+        description:
+          'You know a few real things about Chengkai. Not everything, but enough to understand that he is probably thinking about food, school, or Barcelona at any given moment.',
       }
     }
 
@@ -39,14 +41,14 @@ function App() {
       return {
         title: 'CaiOS Friend',
         description:
-          'You know Chengkai pretty well. You understand both the daily-life side and the personal side.',
+          'You know Chengkai pretty well. You understand the daily-life settings: walking, eating, worrying a little, trying hard, and still finding something funny in the middle.',
       }
     }
 
     return {
       title: 'CaiOS Core Member',
       description:
-        'You are basically inside the system. You know the football, food, city, rest, and humor settings.',
+        'You are basically inside the system. You know the football, food, city, rest, and humor settings. Please use this power gently.',
     }
   }
 
@@ -96,22 +98,27 @@ function App() {
       <div className="pointer-events-none absolute right-[-8rem] top-[28rem] h-96 w-96 rounded-full bg-sky-200/35 blur-3xl" />
       <div className="pointer-events-none absolute bottom-40 left-1/4 h-80 w-80 rounded-full bg-emerald-200/30 blur-3xl" />
 
-      <section className="section-rise relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col px-6 py-8 sm:px-8 lg:px-10">
-        <nav className="flex items-center justify-between border-b border-slate-200/80 pb-5">
+      <section className="section-rise relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 py-6 sm:px-8 sm:py-8 lg:px-10">
+        <nav className="flex flex-col gap-2 border-b border-slate-200/80 pb-5 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-lg font-semibold tracking-tight">CaiOS Public</p>
           <p className="text-sm text-slate-500">Interactive personal space</p>
         </nav>
 
-        <div className="grid flex-1 items-center gap-12 py-14 lg:grid-cols-[1.08fr_0.92fr]">
+        <div className="grid flex-1 items-center gap-10 py-12 sm:py-14 lg:grid-cols-[1.08fr_0.92fr]">
           <div>
             <p className="mb-5 inline-flex rounded-full border border-amber-200 bg-white/75 px-4 py-2 text-sm font-semibold text-amber-800 shadow-sm backdrop-blur">
-              Welcome to CaiOS
+              Welcome to CaiOS · public build
             </p>
-            <h1 className="text-5xl font-bold leading-tight tracking-tight text-slate-950 sm:text-6xl">
+            <h1 className="text-5xl font-bold leading-tight tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
               CaiOS Public
             </h1>
             <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-700">
-              Hi, I&apos;m Chengkai. Welcome to CaiOS — my interactive personal space.
+              Hi, I&apos;m Chengkai. Welcome to the friendly version of my internal operating
+              system: part diary, part quiz, part food-and-feelings interface.
+            </p>
+            <p className="mt-4 max-w-xl text-base leading-7 text-slate-500">
+              Best opened with curiosity, a snack, and zero expectation that I have everything
+              figured out.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <span className="float-tag rounded-full border border-sky-200 bg-white/80 px-4 py-2 text-sm font-semibold text-sky-800 shadow-sm">
@@ -128,11 +135,11 @@ function App() {
 
           <div className="flex justify-center lg:justify-end">
             <div className="soft-card relative flex aspect-square w-72 max-w-full items-center justify-center bg-white/80 p-8 backdrop-blur sm:w-80">
-              <span className="absolute -left-4 top-8 rounded-2xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-semibold text-amber-800 shadow-sm">
-                diary layer
+              <span className="absolute left-3 top-5 rounded-2xl border border-amber-200 bg-amber-50 px-3 py-2 text-xs font-semibold text-amber-800 shadow-sm sm:-left-4 sm:top-8">
+                diary layer: on
               </span>
-              <span className="absolute -right-5 bottom-10 rounded-2xl border border-sky-200 bg-sky-50 px-3 py-2 text-xs font-semibold text-sky-800 shadow-sm">
-                public beta
+              <span className="absolute bottom-5 right-3 rounded-2xl border border-sky-200 bg-sky-50 px-3 py-2 text-xs font-semibold text-sky-800 shadow-sm sm:-right-5 sm:bottom-10">
+                mood: sincere
               </span>
               <img
                 src={heroImage}
@@ -144,8 +151,8 @@ function App() {
         </div>
       </section>
 
-      <section className="section-rise relative z-10 px-6 py-10 sm:px-8 lg:px-10">
-        <div className="soft-card mx-auto max-w-6xl p-6 sm:p-8">
+      <section className="section-rise relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
+        <div className="soft-card mx-auto max-w-6xl bg-white/85 p-5 backdrop-blur sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-amber-700">
@@ -156,7 +163,7 @@ function App() {
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-slate-500">
-              Click a card to learn a little more about that side of me.
+              Tap a soft widget to open one small side of the system.
             </p>
           </div>
 
@@ -170,12 +177,13 @@ function App() {
                     key={card.id}
                     type="button"
                     onClick={() => setSelectedCard(card)}
-                    className={`lift-card min-h-32 rounded-3xl border p-5 text-left transition duration-300 ${
+                    className={`lift-card min-h-36 rounded-3xl border p-5 text-left transition duration-300 ${
                       isSelected
-                        ? 'border-amber-300 bg-amber-50 shadow-sm'
-                        : 'border-slate-200 bg-white hover:border-amber-200'
+                        ? 'border-amber-300 bg-amber-50 shadow-md ring-2 ring-amber-100'
+                        : 'border-slate-200 bg-white hover:border-amber-200 hover:bg-amber-50/40'
                     }`}
                   >
+                    <span className="mb-4 block h-2 w-10 rounded-full bg-amber-200" />
                     <span className="text-lg font-semibold text-slate-950">{card.title}</span>
                     <span className="mt-3 block text-sm leading-6 text-slate-500">
                       {card.subtitle}
@@ -185,7 +193,7 @@ function App() {
               })}
             </div>
 
-            <article className="answer-fade soft-card bg-amber-50/80 p-6">
+            <article key={selectedCard.id} className="answer-fade soft-card bg-amber-50/80 p-6">
               <p className="text-sm font-semibold uppercase tracking-wider text-amber-700">
                 Selected
               </p>
@@ -198,8 +206,8 @@ function App() {
         </div>
       </section>
 
-      <section className="section-rise relative z-10 px-6 py-10 sm:px-8 lg:px-10">
-        <div className="soft-card mx-auto max-w-6xl p-6 sm:p-8">
+      <section className="section-rise relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
+        <div className="soft-card mx-auto max-w-6xl bg-white/85 p-5 backdrop-blur sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-sky-700">
@@ -210,11 +218,11 @@ function App() {
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-slate-500">
-              Each mode has its own questions. Click one and let CaiOS answer.
+              Each mode has its own questions. Pick a tab, then let CaiOS answer in full sentences.
             </p>
           </div>
 
-          <div className="mb-6 flex flex-wrap gap-3 rounded-full border border-slate-200 bg-white/70 p-2 shadow-sm">
+          <div className="mb-6 flex flex-wrap gap-2 rounded-3xl border border-slate-200 bg-slate-50/70 p-2 shadow-inner sm:gap-3">
             {modeQuestions.map((mode) => {
               const isSelected = selectedMode.modeId === mode.modeId
 
@@ -225,8 +233,8 @@ function App() {
                   onClick={() => chooseMode(mode)}
                   className={`rounded-full border px-4 py-2 text-sm font-semibold transition duration-300 ${
                     isSelected
-                      ? 'border-sky-300 bg-sky-100 text-sky-800 shadow-sm'
-                      : 'border-slate-200 bg-white text-slate-600 hover:border-sky-200 hover:bg-sky-50 hover:text-sky-800'
+                      ? 'border-sky-300 bg-white text-sky-800 shadow-sm ring-2 ring-sky-100'
+                      : 'border-transparent bg-transparent text-slate-600 hover:border-sky-200 hover:bg-white hover:text-sky-800'
                   }`}
                 >
                   {mode.modeTitle}
@@ -247,8 +255,8 @@ function App() {
                     onClick={() => setSelectedQuestion(item)}
                     className={`lift-card rounded-3xl border p-5 text-left transition duration-300 ${
                       isSelected
-                        ? 'border-sky-300 bg-sky-50 shadow-sm'
-                        : 'border-slate-200 bg-white hover:border-sky-200'
+                        ? 'border-sky-300 bg-sky-50 shadow-md ring-2 ring-sky-100'
+                        : 'border-slate-200 bg-white hover:border-sky-200 hover:bg-sky-50/40'
                     }`}
                   >
                     <span className="text-base font-semibold text-slate-950">
@@ -259,14 +267,14 @@ function App() {
               })}
             </div>
 
-            <article key={selectedQuestion.id} className="answer-fade soft-card bg-white p-6">
+            <article key={selectedQuestion.id} className="answer-fade soft-card bg-white p-6 sm:p-7">
               <p className="text-sm font-semibold uppercase tracking-wider text-sky-700">
                 CaiOS answers · {selectedMode.modeTitle}
               </p>
               <h3 className="mt-3 text-2xl font-bold tracking-tight text-slate-950">
                 {selectedQuestion.question}
               </h3>
-              <p className="mt-4 text-lg leading-8 text-slate-700">
+              <p className="mt-4 text-base leading-8 text-slate-700 sm:text-lg">
                 {selectedQuestion.answer}
               </p>
             </article>
@@ -274,8 +282,8 @@ function App() {
         </div>
       </section>
 
-      <section className="section-rise relative z-10 px-6 py-10 sm:px-8 lg:px-10">
-        <div className="soft-card mx-auto max-w-6xl p-6 sm:p-8">
+      <section className="section-rise relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
+        <div className="soft-card mx-auto max-w-6xl bg-white/85 p-5 backdrop-blur sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-rose-700">
@@ -286,12 +294,13 @@ function App() {
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-slate-500">
-              Enter your nickname, take a casual quiz, and see which CaiOS level you unlock.
+              Enter your nickname, answer some friend-style questions, and see which CaiOS level
+              you unlock.
             </p>
           </div>
 
           {!quizStarted && !showResult && (
-            <div className="soft-card bg-rose-50/70 p-6">
+            <div className="soft-card bg-rose-50/70 p-5 sm:p-6">
               <label htmlFor="visitor-name" className="text-sm font-semibold text-slate-800">
                 Nickname
               </label>
@@ -314,14 +323,14 @@ function App() {
                 disabled={visitorName.trim() === ''}
                 className="primary-button mt-6 disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400 disabled:shadow-none"
               >
-                Start Quiz
+                Start the friend check
               </button>
             </div>
           )}
 
           {quizStarted && !showResult && (
             <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
-              <aside className="soft-card bg-rose-50/70 p-6">
+              <aside className="soft-card bg-rose-50/70 p-5 sm:p-6">
                 <p className="text-sm font-semibold uppercase tracking-wider text-rose-700">
                   Player
                 </p>
@@ -338,10 +347,7 @@ function App() {
                 <p className="mt-2 text-sm leading-6 text-slate-500">Current score: {score}</p>
               </aside>
 
-              <article
-                key={currentQuestion.id}
-                className="answer-fade soft-card bg-white p-6"
-              >
+              <article key={currentQuestion.id} className="answer-fade soft-card bg-white p-5 sm:p-6">
                 <p className="text-sm font-semibold uppercase tracking-wider text-rose-700">
                   Question {currentQuestionIndex + 1} / {quizQuestions.length}
                 </p>
@@ -359,9 +365,9 @@ function App() {
                         key={option}
                         type="button"
                         onClick={() => setSelectedAnswer(option)}
-                        className={`rounded-lg border p-4 text-left transition duration-300 ${
+                        className={`min-h-14 rounded-2xl border p-4 text-left transition duration-300 ${
                           isSelected
-                            ? 'border-rose-300 bg-rose-100 text-slate-950 shadow-sm'
+                            ? 'border-rose-300 bg-rose-100 text-slate-950 shadow-sm ring-2 ring-rose-100'
                             : 'border-slate-200 bg-white text-slate-700 hover:border-rose-200 hover:bg-rose-50/70'
                         }`}
                       >
@@ -387,7 +393,7 @@ function App() {
           )}
 
           {showResult && (
-            <article className="answer-fade soft-card bg-rose-50/70 p-6">
+            <article className="answer-fade soft-card bg-rose-50/70 p-5 sm:p-7">
               <p className="text-sm font-semibold uppercase tracking-wider text-rose-700">
                 Quiz Result
               </p>
@@ -397,7 +403,7 @@ function App() {
               <p className="mt-4 text-lg text-slate-700">
                 Final score: {score} / {quizQuestions.length}
               </p>
-              <p className="mt-5 inline-flex rounded-2xl border border-rose-200 bg-white px-5 py-3 text-2xl font-bold text-rose-700 shadow-sm">
+              <p className="mt-5 inline-flex rounded-3xl border border-rose-200 bg-white px-5 py-3 text-2xl font-bold text-rose-700 shadow-sm">
                 {quizResult.title}
               </p>
               <p className="mt-3 max-w-2xl text-lg leading-8 text-slate-700">
@@ -411,8 +417,8 @@ function App() {
         </div>
       </section>
 
-      <section className="section-rise relative z-10 px-6 py-10 pb-16 sm:px-8 lg:px-10">
-        <div className="soft-card mx-auto max-w-6xl bg-emerald-50/70 p-6 sm:p-8">
+      <section className="section-rise relative z-10 px-5 py-8 pb-16 sm:px-8 sm:py-10 lg:px-10">
+        <div className="soft-card mx-auto max-w-6xl bg-emerald-50/70 p-5 sm:p-8">
           <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
             Leave Chengkai a Message
           </p>
@@ -420,8 +426,9 @@ function App() {
             A tiny message box for questions, recommendations, encouragement, or random thoughts.
           </h2>
           <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">
-            You can leave a nickname and a short message. It can be anything: a question, a food
-            recommendation, a show recommendation, a random thought, or just something nice.
+            Send a small note from your side of the internet. It can be a food recommendation, a
+            show recommendation, a question, a random thought, or a tiny encouragement for a day
+            when New York feels too fast.
           </p>
           <a
             href="https://tally.so/r/ODjV6k"
