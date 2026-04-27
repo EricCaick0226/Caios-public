@@ -1,9 +1,16 @@
 import { useState } from 'react'
 import heroImage from './assets/hero.png'
-import { exploreCards } from './data'
+import { exploreCards, modeQuestions } from './data'
 
 function App() {
   const [selectedCard, setSelectedCard] = useState(exploreCards[0])
+  const [selectedMode, setSelectedMode] = useState(modeQuestions[0])
+  const [selectedQuestion, setSelectedQuestion] = useState(modeQuestions[0].questions[0])
+
+  function chooseMode(mode) {
+    setSelectedMode(mode)
+    setSelectedQuestion(mode.questions[0])
+  }
 
   return (
     <main className="min-h-screen bg-stone-50 text-slate-950">
@@ -83,6 +90,82 @@ function App() {
               <h3 className="mt-3 text-2xl font-bold">{selectedCard.title}</h3>
               <p className="mt-4 text-lg leading-8 text-slate-200">
                 {selectedCard.description}
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-t border-slate-200 bg-stone-50 px-6 py-16 sm:px-8 lg:px-10">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-sm font-semibold uppercase tracking-wider text-violet-700">
+                Ask Me by Mode
+              </p>
+              <h2 className="mt-2 text-3xl font-bold text-slate-950">
+                Questions for each side
+              </h2>
+            </div>
+            <p className="max-w-md text-sm leading-6 text-slate-500">
+              Each mode has its own questions. Click one and let CaiOS answer.
+            </p>
+          </div>
+
+          <div className="mb-6 flex flex-wrap gap-3">
+            {modeQuestions.map((mode) => {
+              const isSelected = selectedMode.modeId === mode.modeId
+
+              return (
+                <button
+                  key={mode.modeId}
+                  type="button"
+                  onClick={() => chooseMode(mode)}
+                  className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
+                    isSelected
+                      ? 'border-violet-600 bg-violet-600 text-white shadow-sm'
+                      : 'border-slate-200 bg-white text-slate-700 hover:border-violet-300 hover:text-violet-700'
+                  }`}
+                >
+                  {mode.modeTitle}
+                </button>
+              )
+            })}
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="grid gap-3">
+              {selectedMode.questions.map((item) => {
+                const isSelected = selectedQuestion.id === item.id
+
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => setSelectedQuestion(item)}
+                    className={`rounded-lg border p-5 text-left transition ${
+                      isSelected
+                        ? 'border-violet-500 bg-white shadow-sm'
+                        : 'border-slate-200 bg-white/70 hover:border-violet-300 hover:bg-white'
+                    }`}
+                  >
+                    <span className="text-base font-semibold text-slate-950">
+                      {item.question}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+
+            <article className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+              <p className="text-sm font-semibold uppercase tracking-wider text-violet-700">
+                {selectedMode.modeTitle}
+              </p>
+              <h3 className="mt-3 text-2xl font-bold text-slate-950">
+                {selectedQuestion.question}
+              </h3>
+              <p className="mt-4 text-lg leading-8 text-slate-700">
+                {selectedQuestion.answer}
               </p>
             </article>
           </div>
