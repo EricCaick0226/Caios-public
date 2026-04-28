@@ -84,55 +84,8 @@ body {
   box-shadow: none;
 }
 
-.reveal-section {
-  opacity: 0;
-  transform: translateY(28px) scale(0.985);
-  transition:
-    opacity 620ms ease,
-    transform 620ms ease;
-  will-change: opacity, transform;
-}
-
-.reveal-section.is-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-.reveal-section .stagger-child {
-  opacity: 0;
-  transform: translateY(14px);
-}
-
-.reveal-section.is-visible .stagger-child {
-  animation: stagger-rise 520ms ease both;
-}
-
-.reveal-section.is-visible .stagger-child:nth-child(2) {
-  animation-delay: 70ms;
-}
-
-.reveal-section.is-visible .stagger-child:nth-child(3) {
-  animation-delay: 140ms;
-}
-
-.reveal-section.is-visible .stagger-child:nth-child(4) {
-  animation-delay: 210ms;
-}
-
-.reveal-section.is-visible .stagger-child:nth-child(5) {
-  animation-delay: 280ms;
-}
-
-.reveal-section.is-visible .stagger-child:nth-child(6) {
-  animation-delay: 350ms;
-}
-
-.reveal-section.is-visible .stagger-child:nth-child(7) {
-  animation-delay: 420ms;
-}
-
-.section-rise {
-  animation: section-rise 680ms ease both;
+.panel-fade {
+  animation: panel-fade 320ms ease both;
 }
 
 .answer-fade {
@@ -143,15 +96,23 @@ body {
   animation: achievement-toast 320ms ease both;
 }
 
-@keyframes section-rise {
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes panel-fade {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(10px) scale(0.99);
   }
 
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -190,18 +151,6 @@ body {
   }
 }
 
-@keyframes stagger-rise {
-  from {
-    opacity: 0;
-    transform: translateY(14px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -216,8 +165,7 @@ body {
     transition-duration: 1ms !important;
   }
 
-  .reveal-section,
-  .reveal-section .stagger-child {
+  .panel-fade {
     opacity: 1 !important;
     transform: none !important;
   }

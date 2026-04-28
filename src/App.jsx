@@ -1,45 +1,15 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import heroImage from './assets/hero.png'
 import { achievements, exploreCards, modeQuestions, quizQuestions } from './data'
 
-function RevealSection({ children, className = '' }) {
-  const sectionRef = useRef(null)
-  const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(() => {
-    const section = sectionRef.current
-
-    if (!section) {
-      return
-    }
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-          observer.unobserve(entry.target)
-        }
-      },
-      {
-        rootMargin: '0px 0px -12% 0px',
-        threshold: 0.12,
-      },
-    )
-
-    observer.observe(section)
-
-    return () => observer.disconnect()
-  }, [])
-
-  return (
-    <section
-      ref={sectionRef}
-      className={`reveal-section ${isVisible ? 'is-visible' : ''} ${className}`}
-    >
-      {children}
-    </section>
-  )
-}
+const navItems = [
+  { id: 'home', label: 'Home' },
+  { id: 'explore', label: 'About' },
+  { id: 'ask', label: 'Field Notes' },
+  { id: 'quiz', label: 'Friend Check' },
+  { id: 'unlocks', label: 'Unlocks' },
+  { id: 'message', label: 'Message' },
+]
 
 function BrandName({ className = '' }) {
   return (
@@ -52,6 +22,7 @@ function BrandName({ className = '' }) {
 }
 
 function App() {
+  const [activeSection, setActiveSection] = useState('home')
   const [selectedCard, setSelectedCard] = useState(exploreCards[0])
   const [selectedMode, setSelectedMode] = useState(modeQuestions[0])
   const [selectedQuestion, setSelectedQuestion] = useState(modeQuestions[0].questions[0])
@@ -215,51 +186,17 @@ function App() {
   }
 
   const quizResult = getQuizResult(score)
-
   const quizProgress = ((currentQuestionIndex + 1) / quizQuestions.length) * 100
-
   const unlockedCount = achievements.filter((achievement) =>
     unlockedAchievementIds.includes(achievement.id),
   ).length
+  const activeNavItem = navItems.find((item) => item.id === activeSection)
 
-  return (
-    <main className="relative min-h-screen overflow-hidden bg-[#fbfaf7] text-slate-900">
-      <div className="pointer-events-none absolute left-[-10rem] top-20 h-80 w-80 rounded-full bg-amber-200/40 blur-3xl" />
-      <div className="pointer-events-none absolute right-[-8rem] top-[28rem] h-96 w-96 rounded-full bg-sky-200/35 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-40 left-1/4 h-80 w-80 rounded-full bg-emerald-200/30 blur-3xl" />
-
-      {achievementToast && (
-        <aside className="achievement-toast fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-sm rounded-3xl border border-amber-200 bg-[#fffaf0] p-4 shadow-2xl sm:left-auto sm:right-6 sm:top-6 sm:bottom-auto sm:mx-0">
-          <p className="text-xs font-bold uppercase tracking-wider text-amber-700">
-            Achievement Unlocked
-          </p>
-          <div className="mt-2 flex gap-3">
-            <span className="text-3xl" aria-hidden="true">
-              {achievementToast.icon}
-            </span>
-            <div>
-              <h3 className="font-bold text-slate-950">{achievementToast.title}</h3>
-              <p className="mt-1 text-sm leading-6 text-slate-700">
-                {achievementToast.descriptionEn}
-              </p>
-              <p className="mt-1 text-xs leading-5 text-slate-500">
-                {achievementToast.descriptionZh}
-              </p>
-            </div>
-          </div>
-        </aside>
-      )}
-
-      <RevealSection className="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col px-5 py-6 sm:px-8 sm:py-8 lg:px-10">
-        <nav className="flex flex-col gap-2 border-b border-slate-200/80 pb-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-lg font-semibold tracking-tight">
-            <BrandName /> Public
-          </p>
-          <p className="text-sm text-slate-500">soft save file · public version</p>
-        </nav>
-
-        <div className="grid flex-1 items-center gap-10 py-12 sm:py-14 lg:grid-cols-[1.08fr_0.92fr]">
-          <div>
+  function renderPanel() {
+    if (activeSection === 'home') {
+      return (
+        <div className="grid min-h-[calc(100vh-9rem)] items-center gap-8 lg:grid-cols-[1.08fr_0.92fr]">
+          <div className="soft-card bg-white/85 p-6 backdrop-blur sm:p-8 lg:p-10">
             <p className="mb-5 inline-flex rounded-full border border-amber-200 bg-white/75 px-4 py-2 text-sm font-semibold text-amber-800 shadow-sm backdrop-blur">
               Welcome to <BrandName /> · public save file
             </p>
@@ -267,13 +204,16 @@ function App() {
               <BrandName /> Public
             </h1>
             <p className="mt-6 max-w-2xl text-xl leading-8 text-slate-700">
-              Not really a portfolio. More like a tiny public save file for Chengkai: NYU life,
-              Japanese food, background anxiety, Barcelona lore, and small attempts at becoming an
-              actual adult.
+              I&apos;m Chengkai, an NYU student studying Data Science and Mathematics. caIos is my
+              public save file: part academic bio, part digital diary, part friend check, part
+              “what is he eating now?”
             </p>
             <p className="mt-4 max-w-xl text-base leading-7 text-slate-500">
-              Best opened with curiosity, carbs nearby, and low expectations that I have solved
-              life.
+              The serious tabs are open. So are the food tab, the background anxiety tab, and
+              probably one Barcelona tab.
+            </p>
+            <p className="mt-6 rounded-3xl border border-amber-200 bg-amber-50/70 px-4 py-3 text-sm font-semibold text-amber-800">
+              Choose a panel to open a drawer.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <span className="float-tag rounded-full border border-sky-200 bg-white/80 px-4 py-2 text-sm font-semibold text-sky-800 shadow-sm">
@@ -304,26 +244,28 @@ function App() {
             </div>
           </div>
         </div>
-      </RevealSection>
+      )
+    }
 
-      <RevealSection className="relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
-        <div className="soft-card mx-auto max-w-6xl bg-white/85 p-5 backdrop-blur sm:p-8">
+    if (activeSection === 'explore') {
+      return (
+        <div className="soft-card bg-white/85 p-5 backdrop-blur sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-amber-700">
-                Explore Me
+                About
               </p>
               <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-                Choose a Chengkai widget
+                A few Chengkai widgets
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-slate-500">
-              Tap one widget. Some are useful. Some are just me trying to be normal in public.
+              A soft bio, but with more food settings than a normal academic homepage.
             </p>
           </div>
 
           <div className="grid gap-5 lg:grid-cols-[1fr_1fr]">
-            <div className="stagger-list grid gap-3 sm:grid-cols-2">
+            <div className="grid gap-3 sm:grid-cols-2">
               {exploreCards.map((card) => {
                 const isSelected = selectedCard.id === card.id
 
@@ -332,7 +274,7 @@ function App() {
                     key={card.id}
                     type="button"
                     onClick={() => setSelectedCard(card)}
-                    className={`stagger-child lift-card min-h-36 rounded-3xl border p-5 text-left transition duration-300 ${
+                    className={`lift-card min-h-36 rounded-3xl border p-5 text-left transition duration-300 ${
                       isSelected
                         ? 'border-amber-300 bg-amber-50 shadow-md ring-2 ring-amber-100'
                         : 'border-slate-200 bg-white hover:border-amber-200 hover:bg-amber-50/40'
@@ -359,22 +301,24 @@ function App() {
             </article>
           </div>
         </div>
-      </RevealSection>
+      )
+    }
 
-      <RevealSection className="relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
-        <div className="soft-card mx-auto max-w-6xl bg-white/85 p-5 backdrop-blur sm:p-8">
+    if (activeSection === 'ask') {
+      return (
+        <div className="soft-card bg-white/85 p-5 backdrop-blur sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-sky-700">
-                Ask Me by Mode
+                Field Notes
               </p>
               <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-                Tiny prompts, honest answers
+                Small observations and prompts
               </h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-slate-500">
-              Pick a tab. caIos opens a small drawer. Some drawers contain food. Some contain
-              background anxiety.
+              Pick a mode. caIos opens a small drawer: campus notes, food notes, old save files,
+              and the occasional background anxiety report.
             </p>
           </div>
 
@@ -400,7 +344,7 @@ function App() {
           </div>
 
           <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="stagger-list grid gap-3">
+            <div className="grid gap-3">
               {selectedMode.questions.map((item) => {
                 const isSelected = selectedQuestion.id === item.id
 
@@ -409,7 +353,7 @@ function App() {
                     key={item.id}
                     type="button"
                     onClick={() => chooseQuestion(item)}
-                    className={`stagger-child lift-card rounded-3xl border p-5 text-left transition duration-300 ${
+                    className={`lift-card rounded-3xl border p-5 text-left transition duration-300 ${
                       isSelected
                         ? 'border-sky-300 bg-sky-50 shadow-md ring-2 ring-sky-100'
                         : 'border-slate-200 bg-white hover:border-sky-200 hover:bg-sky-50/40'
@@ -436,10 +380,12 @@ function App() {
             </article>
           </div>
         </div>
-      </RevealSection>
+      )
+    }
 
-      <RevealSection className="relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
-        <div className="soft-card mx-auto max-w-6xl bg-white/85 p-5 backdrop-blur sm:p-8">
+    if (activeSection === 'quiz') {
+      return (
+        <div className="soft-card bg-white/85 p-5 backdrop-blur sm:p-8">
           <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-rose-700">
@@ -510,7 +456,7 @@ function App() {
                   {currentQuestion.question}
                 </h3>
 
-                <div className="stagger-list mt-6 grid gap-3 sm:grid-cols-2">
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
                   {currentQuestion.options.map((option, index) => {
                     const isSelected = selectedAnswer === option
                     const optionLetter = String.fromCharCode(65 + index)
@@ -520,7 +466,7 @@ function App() {
                         key={option}
                         type="button"
                         onClick={() => setSelectedAnswer(option)}
-                        className={`stagger-child min-h-14 rounded-2xl border p-4 text-left transition duration-300 ${
+                        className={`min-h-14 rounded-2xl border p-4 text-left transition duration-300 ${
                           isSelected
                             ? 'border-rose-300 bg-rose-100 text-slate-950 shadow-sm ring-2 ring-rose-100'
                             : 'border-slate-200 bg-white text-slate-700 hover:border-rose-200 hover:bg-rose-50/70'
@@ -570,10 +516,12 @@ function App() {
             </article>
           )}
         </div>
-      </RevealSection>
+      )
+    }
 
-      <RevealSection className="relative z-10 px-5 py-8 sm:px-8 sm:py-10 lg:px-10">
-        <div className="soft-card mx-auto max-w-6xl bg-white/85 p-5 backdrop-blur sm:p-8">
+    if (activeSection === 'unlocks') {
+      return (
+        <div className="soft-card bg-white/85 p-5 backdrop-blur sm:p-8">
           <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wider text-amber-700">
@@ -601,14 +549,14 @@ function App() {
             </div>
           </div>
 
-          <div className="stagger-list grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {achievements.map((achievement) => {
               const isUnlocked = unlockedAchievementIds.includes(achievement.id)
 
               return (
                 <article
                   key={achievement.id}
-                  className={`stagger-child rounded-3xl border p-5 transition duration-300 ${
+                  className={`rounded-3xl border p-5 transition duration-300 ${
                     isUnlocked
                       ? 'border-amber-200 bg-amber-50/80 shadow-sm'
                       : 'border-slate-200 bg-white/70 text-slate-500'
@@ -647,35 +595,136 @@ function App() {
             Unlocks only live in this visit. No account, no database.
           </p>
         </div>
-      </RevealSection>
+      )
+    }
 
-      <RevealSection className="relative z-10 px-5 py-8 pb-16 sm:px-8 sm:py-10 lg:px-10">
-        <div className="soft-card mx-auto max-w-6xl bg-emerald-50/70 p-5 sm:p-8">
-          <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
-            Leave Chengkai a Message
+    return (
+      <div className="soft-card bg-emerald-50/70 p-5 sm:p-8">
+        <p className="text-sm font-semibold uppercase tracking-wider text-emerald-700">
+          Leave Chengkai a Message
+        </p>
+        <h2 className="mt-2 max-w-4xl text-3xl font-bold tracking-tight text-slate-950">
+          Send a note into the public save file.
+        </h2>
+        <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">
+          Random thoughts are welcome. Food recommendations are very welcome. Questions, small
+          notes, show recommendations, or “I found a bug in caIos” comments are also accepted.
+        </p>
+        <a
+          href="https://tally.so/r/ODjV6k"
+          target="_blank"
+          rel="noreferrer"
+          onClick={() => unlockAchievement('left-a-trace')}
+          className="mt-6 inline-flex rounded-full border border-emerald-300 bg-white px-5 py-3 text-sm font-semibold text-emerald-800 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-emerald-100 hover:shadow-md"
+        >
+          Send to Chengkai
+        </a>
+        <p className="mt-4 text-sm leading-6 text-slate-500">
+          Powered by Tally. It only asks for a nickname and a message, because this does not need
+          to become a whole bureaucratic system.
+        </p>
+      </div>
+    )
+  }
+
+  return (
+    <main className="relative min-h-screen overflow-hidden bg-[#fbfaf7] text-slate-900">
+      <div className="pointer-events-none absolute left-[-10rem] top-20 h-80 w-80 rounded-full bg-amber-200/40 blur-3xl" />
+      <div className="pointer-events-none absolute right-[-8rem] top-[28rem] h-96 w-96 rounded-full bg-sky-200/35 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-40 left-1/4 h-80 w-80 rounded-full bg-emerald-200/30 blur-3xl" />
+
+      {achievementToast && (
+        <aside className="achievement-toast fixed bottom-4 left-4 right-4 z-50 mx-auto max-w-sm rounded-3xl border border-amber-200 bg-[#fffaf0] p-4 shadow-2xl sm:left-auto sm:right-6 sm:top-6 sm:bottom-auto sm:mx-0">
+          <p className="text-xs font-bold uppercase tracking-wider text-amber-700">
+            Achievement Unlocked
           </p>
-          <h2 className="mt-2 max-w-4xl text-3xl font-bold tracking-tight text-slate-950">
-            Send a note into the public save file.
-          </h2>
-          <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-700">
-            Random thoughts are welcome. Food recommendations are very welcome. Questions, small
-            notes, show recommendations, or “I found a bug in caIos” comments are also accepted.
+          <div className="mt-2 flex gap-3">
+            <span className="text-3xl" aria-hidden="true">
+              {achievementToast.icon}
+            </span>
+            <div>
+              <h3 className="font-bold text-slate-950">{achievementToast.title}</h3>
+              <p className="mt-1 text-sm leading-6 text-slate-700">
+                {achievementToast.descriptionEn}
+              </p>
+              <p className="mt-1 text-xs leading-5 text-slate-500">
+                {achievementToast.descriptionZh}
+              </p>
+            </div>
+          </div>
+        </aside>
+      )}
+
+      <div className="relative z-10 flex min-h-screen flex-col lg:grid lg:grid-cols-[17rem_1fr]">
+        <aside className="hidden border-r border-slate-200/80 bg-white/50 p-5 backdrop-blur lg:flex lg:h-screen lg:flex-col">
+          <div className="soft-card bg-white/80 p-5">
+            <p className="text-2xl font-bold tracking-tight text-slate-950">
+              <BrandName /> Public
+            </p>
+            <p className="mt-2 text-sm leading-6 text-slate-500">academic bio · soft OS shell</p>
+          </div>
+
+          <nav className="mt-5 grid gap-2">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id
+
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setActiveSection(item.id)}
+                  className={`rounded-3xl border px-4 py-3 text-left text-sm font-bold transition duration-300 ${
+                    isActive
+                      ? 'border-amber-200 bg-amber-50 text-amber-900 shadow-sm'
+                      : 'border-transparent bg-white/60 text-slate-600 hover:border-slate-200 hover:bg-white'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              )
+            })}
+          </nav>
+
+          <p className="mt-auto rounded-3xl border border-sky-100 bg-sky-50/70 p-4 text-xs leading-5 text-sky-800">
+            A small academic homepage with drawers for notes, food, and background anxiety.
           </p>
-          <a
-            href="https://tally.so/r/ODjV6k"
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => unlockAchievement('left-a-trace')}
-            className="mt-6 inline-flex rounded-full border border-emerald-300 bg-white px-5 py-3 text-sm font-semibold text-emerald-800 shadow-sm transition duration-300 hover:-translate-y-0.5 hover:bg-emerald-100 hover:shadow-md"
-          >
-            Send to Chengkai
-          </a>
-          <p className="mt-4 text-sm leading-6 text-slate-500">
-            Powered by Tally. It only asks for a nickname and a message, because this does not need
-            to become a whole bureaucratic system.
-          </p>
-        </div>
-      </RevealSection>
+        </aside>
+
+        <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-[#fbfaf7]/90 px-5 py-4 backdrop-blur lg:hidden">
+          <div className="flex items-center justify-between gap-4">
+            <p className="text-xl font-bold tracking-tight">
+              <BrandName /> Public
+            </p>
+            <p className="text-xs font-semibold text-slate-500">{activeNavItem?.label}</p>
+          </div>
+          <nav className="no-scrollbar mt-4 flex gap-2 overflow-x-auto pb-1">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id
+
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => setActiveSection(item.id)}
+                  className={`shrink-0 rounded-full border px-4 py-2 text-sm font-bold transition duration-300 ${
+                    isActive
+                      ? 'border-amber-200 bg-amber-50 text-amber-900 shadow-sm'
+                      : 'border-slate-200 bg-white/80 text-slate-600'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              )
+            })}
+          </nav>
+        </header>
+
+        <section className="min-h-0 flex-1 px-5 py-5 lg:h-screen lg:overflow-y-auto lg:px-8 lg:py-8">
+          <div key={activeSection} className="panel-fade mx-auto max-w-6xl">
+            {renderPanel()}
+          </div>
+        </section>
+      </div>
     </main>
   )
 }
